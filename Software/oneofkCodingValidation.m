@@ -1,9 +1,5 @@
-function [estimate] = oneofkCodingValidation(test, Fs, weights)
-    
-    addpath('D:\MatlabLibs\prtools');
+function [estimate] = oneofkCodingValidation(features, weights)
 
-    features = extractFeatures(test, Fs);
-    
     N = length(features);
    
     Z = [features ones(N,1)];
