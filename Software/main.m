@@ -12,7 +12,3 @@ addpath('.\vb');
 features1 = extractFeatures(training1, Fs1);
 features2 = extractFeatures(training2, Fs2);
 features3 = extractFeatures(training3, Fs3);
-
-% Vi kan tilføje hvid støj for at billigt generere flere samples.
-% Optage i nyt miljø
-% "Cross talk"
