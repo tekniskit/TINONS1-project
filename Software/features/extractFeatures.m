@@ -1,9 +1,9 @@
 function [features] = extractFeatures(data, Fs)
     % Window size in seconds
-    windowsize = 0.2; 
+    windowsize = 0.3; 
 
     % Number of cepstral coeffs (apart from 0'th coef)
-    nc = 30;
+    nc = 60;
 
     features = [];
     
@@ -16,9 +16,11 @@ function [features] = extractFeatures(data, Fs)
 
         p = floor(3*log(Fs(i)));
         
+        s = abs(spectrogram(data(:,i), n, n-inc,nc*5));
+        mel = melcepst(data(:,i), Fs(i), 'M0d', nc, p, n, inc);
         features = [
             features;
-            melcepst(data(:,i), Fs(i), 'M0d', nc, p, n, inc)
+            mel
         ];
     end
 end
