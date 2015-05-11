@@ -27,7 +27,7 @@ glud = testFeatures(1:length(testFeatures)*1/3, :);
 reimer = testFeatures(length(testFeatures)*1/3:length(testFeatures)*2/3, :);
 rune = testFeatures(length(testFeatures)*2/3:length(testFeatures), :);
 
-estimate = oneofkCodingValidation(glud, weights);
+estimate = oneofkCodingValidation(reimer, weights);
 
 figure,hold on
 plot(estimate(1,:), 'r')
