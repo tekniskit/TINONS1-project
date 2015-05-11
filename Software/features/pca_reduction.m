@@ -1,5 +1,5 @@
 function [ features, v ] = pca_reduction( features, noNewFeatures )
-    [v, score, d] = princomp(features);
+    [s,d, v] = svd(features);
     
     figure,
     plot(cumsum(d/sum(d)))

@@ -3,7 +3,7 @@ function [features] = extractFeatures(data, Fs)
     windowsize = 0.3; 
 
     % Number of cepstral coeffs (apart from 0'th coef)
-    nc = 60;
+    nc = 30;
 
     features = [];
     
