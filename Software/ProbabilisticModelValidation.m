@@ -1,5 +1,5 @@
 function [fit] = ProbabilisticModelValidation(features, net)
 
-    fit = glmfwd(net, features)
+    fit = glmfwd(net, features);
     
 end
