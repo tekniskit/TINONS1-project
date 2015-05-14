@@ -1,6 +1,6 @@
 function [features] = extractFeatures(data, Fs)
     % Window size in seconds
-    windowsize = 0.15; 
+    windowsize = 0.2; 
 
     % Number of cepstral coeffs (apart from 0'th coef)
     nc = 30;
