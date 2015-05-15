@@ -17,10 +17,12 @@ function [features] = extractFeatures(data, Fs)
         p = floor(3*log(Fs(i)));
         
         s = abs(spectrogram(data(:,i), n, n-inc,nc*5));
+        
         mel = melcepst(data(:,i), Fs(i), 'M0d', nc, p, n, inc);
+        
         features = [
             features;
-            mel
+            mel %, s'
         ];
     end
 end

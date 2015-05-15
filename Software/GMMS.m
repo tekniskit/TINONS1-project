@@ -42,6 +42,5 @@ function [ mix ] = GMMS(features, ncentres, iterations )
     a = gmmactiv(mix,features)
     
     cd('../..');
-    cd
 end
 
