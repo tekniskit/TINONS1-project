@@ -1,27 +1,66 @@
 \input{preamble}
-\raggedbottom
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Article Title}} % Article title
+
+\author{
+\large
+\textsc{John Smith}\thanks{A thank you or further information}\\[2mm] % Your name
+\normalsize University of California \\ % Your institution
+\normalsize \href{mailto:john@smith.com}{john@smith.com} % Your email address
+\vspace{-5mm}
+}
+\date{}
+
+%----------------------------------------------------------------------------------------
+
 \begin{document}
 
-\pagestyle{empty}
-\include{sections/Frontpage}
-\pagestyle{IHA}
+\maketitle % Insert title
 
-\setcounter{page}{1}
-%Include files here:
-\tableofcontents
-\include{sections/Introduction}
-\include{sections/ProjectFormulation}
-\include{sections/ProjectDescription}
-\include{sections/ProjectResults}
-\include{sections/Conclusion}
+\thispagestyle{fancy} % All pages have headers and footers
 
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
 
+\begin{abstract}
 
-%%%%%% Kilder %%%%
-%%\begingroup
-%%	\raggedright
-%%	\bibliography{bibtex/litteratur}							% Litteraturlisten inkluderes
-%%\endgroup
+\noindent \lipsum[1] % Dummy abstract text
 
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % Two-column layout throughout the main article text
+
+\input{sections/Introduction}
+\input{sections/DataAndFeatures}
+\input{sections/DimensionalityReduction}
+\input{sections/Classifiers}
+\input{sections/Conclusion}
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+
+\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
+
+\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
+Figueredo, A.~J. and Wolf, P. S.~A. (2009).
+\newblock Assortative pairing and life history strategy - a cross-cultural
+  study.
+\newblock {\em Human Nature}, 20:317--330.
+ 
+\end{thebibliography}
+
+%----------------------------------------------------------------------------------------
+
+\end{multicols}
 
 \end{document}
