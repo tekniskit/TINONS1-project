@@ -16,24 +16,24 @@ addpath('libs\HMM\HMMall\KPMstats')
      
      prior = [1 zeros(1, HiddenLayers-1)];
      transmat = rand(HiddenLayers,HiddenLayers);
-     for i = 1: HiddenLayers
-         for j = 1: i-1
-             transmat(i,j) = 0; 
-         end
-         for j = i+2: HiddenLayers
-             transmat(i,j) = 0; 
-         end
-     end 
+%      for i = 1: HiddenLayers
+%          for j = 1: i-1
+%              transmat(i,j) = 0; 
+%          end
+%          for j = i+2: HiddenLayers
+%              transmat(i,j) = 0; 
+%          end
+%      end 
      
      transmat = mk_stochastic(transmat);
      sigma = repmat(eye(size(features,2)), [1 1 HiddenLayers]);
      
      rindex = randperm(Ni);
      for i = 1 : HiddenLayers
-         mu(:,i) = data{rindex(i)}
+         mu(:,i) = data{rindex(i)};
      end
      
-     [LL, prior, transmat, mu, sigma, mixmat] = mhmm_em(data, prior, transmat, mu, sigma, [],'max_iter', iterations) 
+     [LL, prior, transmat, mu, sigma, mixmat] = mhmm_em(data, prior, transmat, mu, sigma, [],'max_iter', iterations);
      
      net{classCount} = {{LL}, {prior}, {transmat}, {mu}, {sigma}, {mixmat}};
      

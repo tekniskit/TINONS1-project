@@ -38,7 +38,19 @@ features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
 
 
+features = [ rand(10,2)*2+2 ; rand(10,2)*2+15 ; rand(10,2)*2+30 ;
+             rand(10,2)*2+5 ; rand(10,2)*2+20 ; rand(10,2)*2+35 ;
+             rand(10,2)*2+10 ; rand(10,2)*2+25 ; rand(10,2)*2+40 ;
+            ]
+
+scatter(features(:,1),features(:,2));
+        
 a = HMMTraining(features, 5 , 100, 3);
+
+
+testFeatures = extractFeatures(test, Fs)*v;
+
+fit = HMMValidation(a,features);
 return;
 
 
