@@ -2,6 +2,7 @@
 % Rune, Reimer & Nicolai
 
 clear, close all, clc;
+rmpath(genpath('libs'));
 
 addpath('libs/vb');
 addpath('libs/netlab');
@@ -35,6 +36,12 @@ noClasses = length(files);
 % Training
 features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
+
+
+a = HMMTraining(features, 5 , 100, 3);
+return;
+
+
 while(true)
     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
     weights = oneofkCodingTraining(features, noClasses);
@@ -82,7 +89,8 @@ while(true)
         save('NN.mat','net2','bestErrorNN');
     end
 end
-%hist(id')
+
+hist(id')
 
 %estimate = ProbabilisticModelValidation(rune,net)';
 
@@ -92,12 +100,10 @@ end
 % reimer = testFeatures(length(testFeatures)*1/3:length(testFeatures)*2/3, :);
 % rune = testFeatures(length(testFeatures)*2/3:length(testFeatures), :);
 
-
-
-% figure,hold on
-% plot(estimate(1,:), 'r')
-% plot(estimate(2,:), 'b')
-% plot(estimate(3,:), 'g')
+figure,hold on
+plot(estimate3(1,:), 'r')
+plot(estimate3(2,:), 'b')
+plot(estimate3(3,:), 'g')
 % 
 % 
 % figure, hist(id);
