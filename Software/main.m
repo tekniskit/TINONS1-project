@@ -39,10 +39,10 @@ features = extractFeatures(training, Fs);
 
 
 while(true)
-    mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
+%     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
     weights = oneofkCodingTraining(features, noClasses);
-    net1 = ProbabilisticModelTraining(features,noClasses);
-    net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
+%     net1 = ProbabilisticModelTraining(features,noClasses);
+%     net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
     mysvm = SVMTraining(features,noClasses);
     
     % Validation
@@ -69,7 +69,6 @@ while(true)
         error(2,i) = ((length(find(difid(i,1:classSamples)~= 0)))/classSamples)*100;
         error(3,i) = ((length(find(difid(i,classSamples+1:2*classSamples)~= 0)))/classSamples)*100;
         error(4,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
-        error(5,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
     end
 
     error
@@ -88,6 +87,8 @@ while(true)
         bestErrorNN = error(1,4);
         save('NN.mat','net2','bestErrorNN');
     end
+    
+    return 
 end
 
 hist(id')
