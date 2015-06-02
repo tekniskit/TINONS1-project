@@ -38,50 +38,38 @@ features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
 
 
-features = [ rand(10,2)*2+2 ; rand(10,2)*2+15 ; rand(10,2)*2+30 ;
-             rand(10,2)*2+5 ; rand(10,2)*2+20 ; rand(10,2)*2+35 ;
-             rand(10,2)*2+10 ; rand(10,2)*2+25 ; rand(10,2)*2+40 ;
-            ]
-
-scatter(features(:,1),features(:,2));
-        
-a = HMMTraining(features, 5 , 100, 3);
-
-
-testFeatures = extractFeatures(test, Fs)*v;
-
-fit = HMMValidation(a,features);
-return;
-
-
 while(true)
     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
     weights = oneofkCodingTraining(features, noClasses);
     net1 = ProbabilisticModelTraining(features,noClasses);
     net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
-
+    mysvm = SVMTraining(features,noClasses);
+    
     % Validation
     testFeatures = extractFeatures(test, Fs)*v;
     classSamples = size(testFeatures,1)/noClasses;
-    correctId = [ ones(4,classSamples) 2*ones(4,classSamples) 3*ones(4,classSamples)];
+    correctId = [ ones(5,classSamples) 2*ones(5,classSamples) 3*ones(5,classSamples)];
 
     estimate1 = oneofkCodingValidation(testFeatures, weights);
     estimate2 = ProbabilisticModelValidation(testFeatures,net1)';
     estimate3 = GMMValidation(testFeatures, mixes);
     estimate4 = NNValidation(testFeatures,net2)';
+    estimate5 = SVMValidation(mysvm,testFeatures,noClasses);
 
 
     [val, id(1,:)] = max(estimate1);
     [val, id(2,:)] = max(estimate2);
     [val, id(3,:)] = max(estimate3);
     [val, id(4,:)] = max(estimate4);
+    [val, id(5,:)] = min(estimate5);
 
     difid = id - correctId;
-    for i = 1:4
+    for i = 1:5
         error(1,i) = ((length(find(difid(i,:)~= 0)))/size(difid,2))*100;
         error(2,i) = ((length(find(difid(i,1:classSamples)~= 0)))/classSamples)*100;
         error(3,i) = ((length(find(difid(i,classSamples+1:2*classSamples)~= 0)))/classSamples)*100;
         error(4,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
+        error(5,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
     end
 
     error
