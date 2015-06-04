@@ -76,7 +76,7 @@ To find the maximum of equation \ref{eq:maxgmm}, we find the differentiated and 
 From equation \ref{eq:mixturemodel} and \ref{eq:maxgmm} the following optimisations equations can be found: 
 
 \begin{equation}
- N_k = \sum\limits_{k}^K P(x_n|k)
+ N_k = \sum\limits_{k}^K P(k|x_n)
  \label{eq:em1}
 \end{equation}
 \begin{equation}
@@ -84,15 +84,15 @@ From equation \ref{eq:mixturemodel} and \ref{eq:maxgmm} the following optimisati
  \label{eq:em2}
 \end{equation}
 \begin{equation}
- \Sigma_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(x_n|k) (x_n -\mu_n)(x_n-\mu_k)^\intercal}
+ \Sigma_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|x_n) (x_n -\mu_n)(x_n-\mu_k)^\intercal}
  \label{eq:em3}
 \end{equation}
 \begin{equation}
- \mu_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(x_n|k) x_n}
+ \mu_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|x_n) x_n}
  \label{eq:em4}
 \end{equation}
 
-The variable $N_k$ can be seen as the effective number of samples in a cluster. The $P(k|x_n)$ term can be seen as the responsibility a center point has for that point. Unlike the K-means algorithm the all center points are responsible for all points, but the level of responsibility is different from center point to center point. To find the optimal center points $\mu_k$, and there deviations $\Sigma_k$ the EM algorithm can be used. This is based on a the idea of a E-step, called the estimation step, and a M-step called the maximisation step. Much like the k-means does this also have 4 iterative steps. 
+The variable $N_k$ can be seen as the effective number of samples in a cluster, and $N$ is the total number of samples. The $P(k|x_n)$ term can be seen as the responsibility a center point has for that point. Unlike the K-means algorithm the all center points are responsible for all points, but the level of responsibility is different from center point to center point. To find the optimal center points $\mu_k$, and there deviations $\Sigma_k$ the EM algorithm can be used. This is based on a the idea of a E-step, called the estimation step, and a M-step called the maximisation step. Much like the k-means does this also have 4 iterative steps. 
 
 
 \begin{enumerate}
@@ -116,21 +116,22 @@ Like the k-means algorithm does this algorithm also map a predetermined number o
 \label{fig:badkmeans}
 \end{figure}
 
-
+Like for the k-means the initaial start estimates for the mean value is important for a good result, and a fast execution time. A normal approach is to use the k-means algorithm first, and use the final means as the start estimate in the em algorithm.
 
 \subsubsection{Unsupervised Gaussian mixture model}
-
+ hvad er det\\
+ 
+ hvordan er det brugt i projektet\\
+ 
+ del resultat \\
+ 
 \subsubsection{Supervised Gaussian mixture model}
 \label{sec:EMGMM}
 
-In this section we continue looking at some more 
-
-Introtext\\
-
-Math\\
-
-How we use it or why we don't use it\\
-
-Intermediate result\\
+ hvad er det\\
+ 
+ hvordan er det brugt i projektet  
+ 
+ del resultat 
 
 %------------------------------------------------
