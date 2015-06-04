@@ -1,26 +1,18 @@
-\subsection{Probability Classifier}
-
-e.g. maximum likelihood, training/testing and generative vs. discriminative models.\\
-
-Introtext\\
-
-In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point is a part of our class. This can be very powerful since we not blindly put a sample in a class but also get information about the likelihood. This of course demands that we are able to give a qualified guess of the distribution to use. In this analysis it is assumed that the data is Gaussian distributed. This assumption is made by looking at the histogram of the features. this is shown on figure ( fix me).\\\\
-
-
-show figure 1\\\\
-
-
-By using the probability for a given sample if a certain class is assumed $P(x|C)$. Iteration over the the different classes we can get the probability of the sample given these classes. This information can be used to determine what class and how certain we are of this decision. 
-This is illustrated in figure X. (fix me)\\
+\subsection{Probabilistic models}
+In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point belongs to a certain class. This can be very powerful since we not blindly put a sample in a class but also get information about the likelihood. This of course demands that a qualified guess of the distribution can be made. 
+By using the probability for a given sample, given a certain class $P(x|C)$. Iteration over the the different classes, it is possible to decide were to classify the sample, and how certain we are of this decision. This is illustrated in figure X. (fix me)\\
 
 figure 2\\
 
 
-Instead of asking what the probability of the sample given the class is $P(x|C)$, the reveres probability can be used. That is the probability of a class given a sample $P(C|x)$. This can be found using Bayes rule:
+
+\subsubsection{Discriminative Model}
+
+Instead of asking what the probability of the sample, given the class is $P(x|C)$, the conditional probability can be used. That is the probability of a class, given a sample $P(C|x)$. This can be found using Bayes rule:
 \begin{equation}
  P(C|x)=\frac{P(x|C)P(C)}{P(x)}
 \end{equation}
-This will for the Gaussian distribution something like a sigmoid function. using this model to classify it is no longer able to tell about the probability of a sample not being in any class, but on the same time also simplifies the classifier a lot. Compared to the linear classifier the this probabilistic classifier are able to create a mouth sharper decision bound. If the sharper decision bound is the goal then a easer approach is to estimate the optimal sigmoid for separation of classes directly. This can be done by optimizing a softmax-function to separate the classes. The softmax-function is expressed as: 
+This kind of model is called a discriminative model, and is used for modelling the dependence of an unobserved class $C$ on an observed variable $x$. This will for the Gaussian distribution be a sigmoid function. Using this model to classify it is no longer able to tell about the probability of a sample not being in any class, but on the same time also simplifies the classifier a lot. Compared to the linear classifier the discriminative classifier are able to create a mouth sharper decision bound. If the sharper decision bound is the goal then a easer approach is to estimate the optimal sigmoid for separation of classes directly. This can be done by optimizing a soft-max function to separate the classes. The soft-max function is expressed as: 
 \begin{equation}
 \label{eq:softmax}
  Y_k(w_k,x)=\frac{e^{w_k x}}{\sum\limits_{k=1}^K e^{w_k x}}
@@ -30,21 +22,38 @@ Comparing this to the previous probabilist function we can assume that:
 \label{eq:baseassmution}
  P(t|w,x) = p_n^t (1-p_n)^{1-t} , t \in [0,1] 
 \end{equation}
-Here we see how lilly it is that the class vector t, is correct given data point x, and some weights w in the soft-max.  Where t is the class vector, that indicates which class the data point x is part of.  The $p_n$ is given by: 
+Here we see how likely it is that the class vector t, is correct given data point x, and some weights w in the soft-max.  Where t is the class vector, that indicates which class the data point x is part of.  The $p_n$ is given by: 
 \begin{equation}
  p_n = P(C| w, x) = y(w,x)
 \end{equation}
-The challenge is now to find the optimal weights $w_k$ for each class to create the best classifier. This can be done by combining the two equations \ref{eq:softmax}, \ref{eq:baseassmution} to create a non linear optimisation problem.
+The challenge is now to find the optimal weights $w_k$, for each class, to create the best classifier. This can be done by combining the two equations \ref{eq:softmax}, \ref{eq:baseassmution} to create a non linear optimisation problem.
 \begin{equation}
  L(w) = \log{\prod\limits_{i=1}^N y(w,x_i)^{t_i} ( 1-y(w,x_i))^{1-t_1}}
  = \sum\limits_{i=1}^N t_i\log{y(w,x_i)}+(1-t_i)\log({1-y(w,x_i))}
 \end{equation}
-This can be solved by many different optimizations strategies. By optimizing this for each class we will find the optimal weights for the softmax-class separator in equation \ref{eq:softmax}.\\
+This can be solved by many different optimizations strategies. By optimizing this for each class we will find the optimal weights for the soft-max class separator in equation \ref{eq:softmax}.\\
 
-In the speaker recognition case we have tried using a soft-max function to separate the classes as described above by using it as a $P(C|x)$ approach. We have also used a full probabilistic model as described in using the $P(x|C)$ approach, by using a Gaussian mixture model this is described in the section: \ref{sec:EMGMM}. 
+In the speaker recognition case a soft-max function has been used to create a discriminative model, that are able to separate the classes as described above. A full probabilistic model using the $P(x|C)$ approach, has also been attempted by using a Gaussian mixture model. This is described in the section: \ref{sec:EMGMM}. In this analysis it is assumed that the data is Gaussian distributed. This assumption is made by looking at the histogram of the features. This is shown on figure ( fix me).\\\\
 
+show figure 1\\\\
 
-Intermediate result\\
+By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, whit a 21.58 \% error rate. The results can be seen in table \ref{tab:resultTableProp}. 
 
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\hline
+Total Error   & 21.58 \% \\ \hline
+Nicolai Error & 24.27 \% \\
+Rasmus Error  & 10.68 \% \\
+Rune Error    & 29.77 \% \\ \hline
+\end{tabular}
+\caption{Discriminative Model Results}
+\label{tab:resultTableProp}
+\end{table}
+
+The results indicate that Rune is the one there is hardest to classify. Even though some samples are classified wrong, the majority of samples is correct classified. This makes this method valid for speaker recognition. \\\\
+
+(fix me) måske have awesome glud billed .
 
 %------------------------------------------------
