@@ -24,7 +24,7 @@ Comparing this to the previous probabilist function we can assume that:
 \end{equation}
 Here we see how likely it is that the class vector t, is correct given data point x, and some weights w in the soft-max.  Where t is the class vector, that indicates which class the data point x is part of.  The $p_n$ is given by: 
 \begin{equation}
- p_n = P(C| w, x) = y(w,x)
+ P_n = P(C| w, x) = y(w,x)
 \end{equation}
 The challenge is now to find the optimal weights $w_k$, for each class, to create the best classifier. This can be done by combining the two equations \ref{eq:softmax}, \ref{eq:baseassmution} to create a non linear optimisation problem.
 \begin{equation}
