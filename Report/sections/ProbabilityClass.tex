@@ -33,9 +33,9 @@ The challenge is now to find the optimal weights $w_k$, for each class, to creat
 \end{equation}
 This can be solved by many different optimizations strategies. By optimizing this for each class we will find the optimal weights for the soft-max class separator in equation \ref{eq:softmax}.\\
 
-In the speaker recognition case a soft-max function has been used to create a discriminative model, that are able to separate the classes as described above. A full probabilistic model using the $P(x|C)$ approach, has also been attempted by using a Gaussian mixture model. This is described in the section: \ref{sec:EMGMM}. In this analysis it is assumed that the data is Gaussian distributed. This assumption is made by looking at the histogram of the features. This is shown on figure ( fix me).\\\\
+In the speaker recognition case a soft-max function has been used to create a discriminative model, that are able to separate the classes as described above. A full probabilistic model using the $P(x|C)$ approach, has also been attempted by using a Gaussian mixture model. This is described in the section: \ref{sec:EMGMM}. In this analysis it is assumed that the data is Gaussian distributed. This assumption is made by looking at the histogram of the features. This is shown on figure ( fix me).\\
 
-show figure 1\\\\
+show figure 1\\
 
 By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, whit a 21.58 \% error rate. The results can be seen in table \ref{tab:resultTableProp}. 
 
@@ -52,7 +52,8 @@ Rune Error    & 29.77 \% \\ \hline
 \label{tab:resultTableProp}
 \end{table}
 
-The results indicate that Rune is the one there is hardest to classify. Even though some samples are classified wrong, the majority of samples is correct classified. This makes this method valid for speaker recognition. \\\\
+The results indicate that Rune is the one there is hardest to classify. Even though some samples are classified wrong, the majority of samples is correct classified. This makes this method valid for speaker recognition. \\
+\ \\
 
 (fix me) måske have awesome glud billed .
 
