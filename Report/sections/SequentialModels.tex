@@ -9,6 +9,28 @@ Math\\
 
 How we use it or why we don't use it\\
 
-Intermediate result\\
+Intermediate result\\\ \\
 
 %------------------------------------------------
+
+The classifiers presented until this point have been stateless. This means that each point is being classified solely on its values, and not in the context of samples. But sometimes information about how the features change over time can be used to determine the class. An example of this is in word recognition, where the order the letters come in is important for recognizing a word.  If we look at the following two words:
+
+\begin{itemize}
+  \item "Cow"
+  \item "Cooowwww"
+\end{itemize}
+
+It is easy to see that it is the same word, but some of the letters is just repeated in the second case. This is often the case when trying to recognize words in speech, due to the variance in speed from person to person. This kind of behavior  can be modelled using a Markov model.
+
+\subsubsection{The Markov model}
+The Markov model is a way of modelling a sequential dependency in the data. Much like before does the data need to be spilt into classes, called states. The The Markov model does not deal whit splitting the data into states, but rather in what order the data transitions between states.\\\ \\
+
+In the Markov model it is assumed that the state only is determined by the last sample. Mathematically described as shown in equation \ref{eq:markovpremis}.
+
+\begin{equation}
+ P(x| x_{n-1}, x_{n-2}, ..., x_1) = P(x| x_{n-1}) 
+ \label{eq:markovpremis}
+\end{equation}
+
+This is also called a Markov chain or a first order Markov model, since it is only depended on the last sample. Variations of the model does exists that takes more than the last sample in consideration, but will not be further discussed in this report.  
+
