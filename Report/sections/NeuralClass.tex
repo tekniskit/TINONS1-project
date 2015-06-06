@@ -80,8 +80,17 @@ h_\Theta(x) = a^{(3)}
 
 \subsubsection{Training the network}
 Given $m$ training examples $\left\{(x^{(1)},y^{(1)}), (x^{(2)},y^{(2)}),\dots, (x^{(m)},y^{(m)}) \right\}$.
-Training the neural network is an optimization problem, where the cost function $J(\Theta)$ should be minimized with respect to the weights $\Theta$.
-The cost function is defined as:
+Training the neural network is an optimization problem, where a cost function $J(\Theta)$ should be minimized with respect to the weights $\Theta$:
+\begin{equation}
+\min_{\Theta} J(\Theta)
+\end{equation}
+
+We can minimize the cost function using an optimization algorithm like gradient descent. For such an optimization algorithm, we also need the partial derivatives of the cost funtion:
+\begin{equation}
+\frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta)
+\end{equation}
+
+The cost function $J$ is defined as:
 \begin{equation}
 \begin{split}
 J(\Theta) = &-\frac{1}{m}
@@ -106,35 +115,28 @@ The second term of the cost function is the regularization term.
 
 (TODO: Explain the intuition behind the cost function.)
 
-To minimize the cost function we can use the backpropagation algorithm.
+To find the partial derivatives, we can use the backpropagation algorithm: (TODO: Help please)\\
 
-Set $\Delta^{(l)}_{ij} = 0$ (for all $l,i,j$).
-$\Delta^{(l)}_{ij}$ will be used to compute
-$\frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta)$
+The error term of the output layer is defined as:
+\begin{equation}
+\delta^{(L)} = a^{(L)}-y
+\end{equation}
 
-For $i=1to m$ (loop through trainging examples)\\
-Set $a^{(1)}=x^{(i)}$ (i'th training example) \\
-Perform forward propagation to compute $a^{(l)}$ for $l=2,3,\dots,L$ (activations) \\
-Using $y^{(i)}$, compute $\delta^{(L)} =a^{(L)}-y^{(i)}$ (error term. $a$ is the hypothesis of the output. $y$ is the correct output/class)\\
-Compute $\delta^{(L-1)},\delta^{(L-2)},\dots,\delta^{(2)}$ (backpropagation. There is no $\delta^{(1)}$ since we do not associate an error to the input layer.). \\
+The error term of the hidden layers is defined as:
+\begin{equation}
+\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .* a^{(l)} .* (1-a^{(l)})
+\end{equation}
 
-$\Delta^{(l)}_{ij}:=\Delta^{(l)}_{ij}+a^{(l)}_j\delta^{(l+1)}_i$ (accumulate the partial derivate terms.)  \\
+There is no error term of the input layer. 
 
-END FOR \\
+The partial derivative can then be found as:
+
+\begin{equation}
+\frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta) = 
+\delta
+\end{equation}
 
 (TODO: Show figure of how back propagation works.)
 
-\begin{equation}
-D^{(l)}_{ij} := TODO
-\end{equation}
-
-It can be proved that:
-\begin{equation}
-\frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta) =D^{(l)}_{ij}
-\end{equation}
-
-How we use it or why we don't use it:\\
-
-Intermediate result:\\
-
+(TODO: How do we use it?)
 %------------------------------------------------
