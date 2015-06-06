@@ -15,7 +15,7 @@ Instead of asking what the probability of the sample, given the class is $P(x|C)
 This kind of model is called a discriminative model, and is used for modelling the dependence of an unobserved class $C$ on an observed variable $x$. This will for the Gaussian distribution be a sigmoid function. Using this model to classify it is no longer able to tell about the probability of a sample not being in any class, but on the same time also simplifies the classifier a lot. Compared to the linear classifier the discriminative classifier are able to create a mouth sharper decision bound. If the sharper decision bound is the goal then a easer approach is to estimate the optimal sigmoid for separation of classes directly. This can be done by optimizing a soft-max function to separate the classes. The soft-max function is expressed as: 
 \begin{equation}
 \label{eq:softmax}
- Y_k(w_k,x)=\frac{e^{w_k x}}{\sum\limits_{k=1}^K e^{w_k x}}
+ y_k(w_k,x)=\frac{e^{w_k x}}{\sum\limits_{k=1}^K e^{w_k x}}
 \end{equation}
 Comparing this to the previous probabilist function we can assume that:
 \begin{equation}
