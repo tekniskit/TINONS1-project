@@ -119,13 +119,68 @@ We do this to increase the speed of our learning algorithms while still retaingi
 \end{figure}
 
 \subsection{Fisher}
-
-Introtext\\
-
-Math\\
-
-How we use it or why we don't use it\\
-
-Intermediate result\\
+Dimensionality Reduction is another take on linear classification. We use equation \ref{fisher1} and place a threshold on y such that class 1: $y\geqslant -\omega_0$ and class 2 is everything else. This is also said as projecting data down to one dimension.
+\begin{equation}
+\label{fisher1}
+y = \textbf{w}^T\textbf{x}
+\end{equation}
+This leads to a considerable loss in information and may cause overlapping in data that did not overlap in multidimensional space.\\
+By adjusting the weight vector \textbf{w} a solution can be found that minimises overlapping by maximising the distance between classes. Given two classes we have:
+\begin{equation}
+m_1 = \frac{1}{N_1} \sum_{n=C_1} X_n,       m_2 = \frac{1}{N_2} \sum_{n=C_2} X_n
+\end{equation}
+With \textbf{m} being the mean of the class and \texttt{N} being the amount of points in the class. The goal is to maximise the difference $m_2 - m_1$ and this is done by maximising the difference of the projected data as well:
+\begin{equation}
+m_2 - m_1 = \textbf{w}^{T} \times ( \textbf{m}_2 - \textbf{m}_1 )
+\end{equation}
+We add the constraint that $\sum_i \omega^2_i  = 1$ in order to avoid large expressions when dealing with the projected data. When solving this we see that there might be an issue with considerable overlap in the projected space.\\
+The fisher method seeks to minimise the class overlap by reducing in class variance. Within-class variance is given by:
+\begin{equation}
+s^2_k = \sum_{n=C_1} (y_n - m_k)^2
+\end{equation}
+where $y_n = \textbf{w}^T\textbf{x}_n$ and $m_k$ is the difference mentioned earlier. The fisher criterion is given by:
+\begin{equation}
+J(\textbf{w})=\frac{(m_2 - m_1)^2}{s^2_1+s^2_2}
+\end{equation}
+This can also be written as:
+\begin{equation}
+J(\textbf{w})=\frac{\textbf{w}^T\textbf{S}_B\textbf{w}}{\textbf{w}^T\textbf{S}_W\textbf{w}}
+\end{equation}
+Where $\textbf{S}_B = (\textbf{m}_2 - \textbf{m}_1)(\textbf{m}_2 - \textbf{m}_1)^T$ is the between-class covariance matrix and $\textbf{S}_W = \sum_{n\in C_1}(\textbf{x}_n - \textbf{m}_1)(\textbf{x}_n - \textbf{m}_1)^T + \sum_{n\in C_2}(\textbf{x}_n - \textbf{m}_2)(\textbf{x}_n - \textbf{m}_2)^T $ is the within-class covariance matrix.\\
+Differentiating and removing the scaling factors we get:
+\begin{equation}
+\textbf{w} \propto \textbf{S}^-1_W ( \textbf{m}_2 - \textbf{m}_1 )
+\end{equation}
+This is know as Fisher's linear discriminant. This holds for 2 classes but in this project there is 3 classes. A general term for Fisher's discriminant for more than two classes must be considered.\\
+Given $\textbf{y} = \textbf{W}^T\textbf{x}$ where \textbf{W} is the weight vectors $\textbf{w}_k$. The within-class covariance for K classes is given by: 
+\begin{equation}
+\textbf{S}_W = \sum^K_{n=1} \sum_{n=C_k} (\textbf{x}_n - \textbf{m}_k)(\textbf{x}_n - \textbf{m}_k)^T 
+\end{equation}
+With $\textbf{m}_k = \frac{1}{N_k}\sum_{n=C_k} \textbf{x}_n$, $N_k$ is the number of patterns in class k. The total covariance matrix given by Duda and Hart(1973) is used to find the between-class covariance matrix.
+\begin{equation}
+\textbf{S}_T = \sum^N_{n=C_k}(\textbf{x}_n - \textbf{m})(\textbf{x}_n - \textbf{m})^T 
+\end{equation}
+where \textbf{m} is the mean of the total data set. The between class covariance matrix can be found by using $\textbf{S}_T = \textbf{S}_W + \textbf{S}_B$.
+\begin{equation}
+\textbf{S}_B = \sum^N_{n=C_k} N_k(\textbf{m}_k - \textbf{m})(\textbf{m}_k - \textbf{m})^T 
+\end{equation}
+Defining these matrices in the projected space we get:
+\begin{equation}
+\textbf{s}_W = \sum^K_{n=1} 
+\sum_{n=C_k} (\textbf{y}_n - 
+\boldsymbol{\mu}_k)
+(\textbf{y}_n - 
+\boldsymbol{\mu}_k)^T 
+\end{equation}
+\begin{equation}
+\textbf{s}_B = \sum^N_{n=C_k} N_k(\boldsymbol{\mu}_k - \boldsymbol{\mu})(\boldsymbol{\mu}_k - \boldsymbol{\mu})^T 
+\end{equation}
+where $\boldsymbol{\mu}_k = \frac{1}{N_k}\sum_{n=C_k}\textbf{y}_n$ 
+and $\boldsymbol{\mu} = \frac{1}{N_k}\sum^K_{k=1}N_k \boldsymbol{\mu}_k$.\\
+The cost function is then defined as:
+\begin{equation}
+J(\textbf{W}) =  Tr{\textbf{s}^-1_W\textbf{s}_B}
+\end{equation}
+The resulting dimensions is K - 1  where K is the number of classes. In this project the dimensions of the fisher linear discriminant is $3 - 1 = 2$. Analysing these features does not provide usable classification for this project.
 
 %------------------------------------------------
