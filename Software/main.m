@@ -37,6 +37,7 @@ noClasses = length(files);
 features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
 
+a = GMMS(features, 3, 1000);
 
 while(true)
 %     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);

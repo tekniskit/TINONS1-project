@@ -40,6 +40,18 @@ function [ mix ] = GMMS(features, ncentres, iterations )
     
     
     a = gmmactiv(mix,features)
+    [val, id] = max(a');
+    classSamples = size(features,1)/3;
+    correctId = [ ones(1,classSamples) 2*ones(1,classSamples) 3*ones(1,classSamples)];
+    
+    difid = correctId - id;
+    
+    error(1,1) = ((length(find(difid(1,:)~= 0)))/size(difid,2))*100;
+    error(2,1) = ((length(find(difid(1,1:classSamples)~= 0)))/classSamples)*100;
+    error(3,1) = ((length(find(difid(1,classSamples+1:2*classSamples)~= 0)))/classSamples)*100;
+    error(4,1) = ((length(find(difid(1,2*classSamples+1:end)~= 0)))/classSamples)*100;
+    
+    error
     
     cd('../..');
 end
