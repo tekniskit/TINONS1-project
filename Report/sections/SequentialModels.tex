@@ -17,12 +17,19 @@ The classifiers presented until this point have been stateless. This means that 
 
 \begin{itemize}
   \item "Cow"
-  \item "Cooowwww"
+  \item "Coooww"
 \end{itemize}
 
-It is easy to see that it is the same word, but some of the letters is just repeated in the second case. This is often the case when trying to recognize words in speech, due to the variance in speed from person to person. This kind of behavior  can be modelled using a Markov model.
+It is easy to see that it is the same word, some of the letters is just repeated in the second case. This is often the case when trying to recognize words in speech, due to the variance in speed from person to person. To model this we could look for the probability of: 
 
-\subsubsection{The Markov model}
+\begin{equation}
+ P(x_1, x_2, ..., x_5) = P(x_5| x_4,x_3,x_2, x_1) P(x_4| x_3,x_2, x_1) P(x_3|x_2, x_1) P(x_2|x_1) P(x_1)
+ \label{eq:seqmodel}
+\end{equation}
+
+Which simply states that the probability of a given sequence, is the probability of the first letter multiplied by the probability of the next letter, given the first, and so on. To model this kind of behavior a Markov model can be used.
+
+\subsubsection{Markov Model}
 The Markov model is a way of modelling a sequential dependency in the data. Much like before does the data need to be spilt into classes, called states. The The Markov model does not deal whit splitting the data into states, but rather in what order the data transitions between states.\\\ \\
 
 In the Markov model it is assumed that the state only is determined by the last sample. Mathematically described as shown in equation \ref{eq:markovpremis}.
@@ -32,5 +39,36 @@ In the Markov model it is assumed that the state only is determined by the last 
  \label{eq:markovpremis}
 \end{equation}
 
-This is also called a Markov chain or a first order Markov model, since it is only depended on the last sample. Variations of the model does exists that takes more than the last sample in consideration, but will not be further discussed in this report.  
+This assumption simplifies equation \ref{eq:seqmodel}, so we know have:
+
+\begin{equation}
+ P(x_1, x_2, ..., x_n) = P(x_1) \prod\limits_{n=2}^N{P(x_n| x_{n-1})}
+\end{equation}
+
+This is also called a Markov chain or a first order Markov model, since it is only depended on the last sample. Variations of the model does exists that takes more than just the last sample in consideration, but will not be further discussed in this report.  
+\\\ \\
+A simple Markov model is shown in figure \ref{fig:simpleMarkov}. This is a illustration of the previous "Cow" example, where each letter is a state. Here we assume that we always start in state "C". From here we have 95\% chance of moving to the "O" state and 5\% chance of staying in the "O" state. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{billeder/simpleMarkov}
+\caption{Markov model for the word "COW"}
+\label{fig:simpleMarkov}
+\end{figure}
+		
+In this model there is 0\% chance of moving from state "C" to "W". It is only possible to go to the same state, or change to the next in the letter series. This kind of model is called a Left-to-right model. This model is often used in this kind off application, but for other applications a other model where it is possible to jump between many states could be relevant. The states transaction is often given in a transaction matrix: 
+\begin{equation}
+	A_{n,n-1} = 
+	\begin{bmatrix}
+  	0.05 & 0.95 & 0 \\
+  	0 & 0.05 & 0.95	\\
+  	0 & 0 & 	1
+ 	\end{bmatrix}
+ 	\label{eq:Amat}
+\end{equation}
+
+In equation \ref{eq:Amat} the transition matrix is shown for the word "COW" illustrated by the transition graph in figure \ref{fig:simpleMarkov}. The matrix is an $M\times M$ matrix, where $M$ is the number of states. Each row and column is symbolizing the states, and the cells contains the transition probability from a row element to a column element.
+
+
+\subsubsection{Hidden Markov Model}
 
