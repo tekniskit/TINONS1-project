@@ -71,4 +71,20 @@ In equation \ref{eq:Amat} the transition matrix is shown for the word "COW" illu
 
 
 \subsubsection{Hidden Markov Model}
+A hidden Markov model is a Markov model in which the system being modelled is assumed to be a Markov process with unobserved states, also known as hidden states. It also have a set of desired output states. Like for the normal Markov model there is a transition between the hidden states given by a transition matrix $A$. For each hidden state there is also a probability of a given output state this is called the emission probability.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{billeder/HiddenMarkovModel}
+\caption{Hidden Markov Model}
+\label{fig:HiddenMarkov}
+\end{figure}
+
+This is illustrated on figure \ref{fig:HiddenMarkov}, where x is the known output states. The z is the hidden input states and a is the transaction parameters and b is the emission parameters. the probability for a given hidden sequence and output can be described as: 
+\begin{equation}
+ P(x_1, ..., x_n, z_1, ..., z_n) = P(z_1) \prod\limits_{n=2}^N{P(z_n| z_{n-1})} 
+\prod\limits_{n=1}^N{P(z_n| z_n)}
+\end{equation}
+ 
+For many applications we do not know the hidden state of the data, but only the desired output state. It is therefore desired to make a training session that finds the optimal hidden states, and transition and emission parameters that gives us the best fit to the desired output states. 
 
