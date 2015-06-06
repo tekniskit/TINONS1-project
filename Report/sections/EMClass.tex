@@ -119,6 +119,7 @@ Like the k-means algorithm does this algorithm also map a predetermined number o
 Like for the k-means the initial start estimates for the mean value is important for a good result, and a fast execution time. A normal approach is to use the k-means algorithm first, and use the final means as the start estimate in the em algorithm. In order to reduce the training time, the model is sometimes reduced in complicity. Instead of a full Gaussian distribution a spherical covariance or a completely diagonal covariance is used. 
 
 \subsubsection{Unsupervised Gaussian Mixture Model}
+\label{sec:UGMM}
 Sometimes the training data is unlabelled, which mean that the classes is unknown. In such data there can still be some underlying structures, that can be used to classify the data. The goal of unsupervised learning is to discover these structures, and create the classes from them. \\ \ \\
 One approach of this is to select a number of desired classes, and try finding clusters in the data to fit to the classes. This can be done whit the k-means as shown in figure \ref{fig:kmeans}.  where 3 classes is found to fit the data. Likewise can the Gaussian mixture model also be used to find distributions that describes the classes. This can be seen in figure \ref{fig:UGMM} where 3 Gaussian distributions is fit to the unlabelled data. \\ \ \\
 

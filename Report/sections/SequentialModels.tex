@@ -1,18 +1,4 @@
 \subsection{Sequential Models}
-Markov model and Hidden Markov Model.
-
-e.g. meaning of parameters, left-to-right model, outline of training/testing method.\\
-
-Introtext\\
-
-Math\\
-
-How we use it or why we don't use it\\
-
-Intermediate result\\\ \\
-
-%------------------------------------------------
-
 The classifiers presented until this point have been stateless. This means that each point is being classified solely on its values, and not in the context of samples. But sometimes information about how the features change over time can be used to determine the class. An example of this is in word recognition, where the order the letters come in is important for recognizing a word.  If we look at the following two words:
 
 \begin{itemize}
@@ -88,3 +74,51 @@ This is illustrated on figure \ref{fig:HiddenMarkov}, where x is the known outpu
  
 For many applications we do not know the hidden state of the data, but only the desired output state. It is therefore desired to make a training session that finds the optimal hidden states, and transition and emission parameters that gives us the best fit to the desired output states. 
 
+For this the EM algorithm can be used. To do the estimation step a function called the $\gamma$-function ans the $\xi$-function is used: 
+
+\begin{equation}
+	\gamma(z_n) = p(z_n| x_1, ..., x_n)
+\end{equation}
+
+\begin{equation}
+	\xi(z_n, z_{n-1}) = P(z_n, z_{n-1}| x_1, ..., x_n)
+\end{equation}
+
+Using the this equation it is possible to create the EM steps to find the optimal parameters. 
+
+\subsubsection{Forward - Backward Algorithm }
+When evaluating how likely it is that some given data $x_1, x_2, ... x_n$ is fitting a given hidden Markov model, the probability can be described as such: 
+
+\begin{equation}
+	P(x_1, x_2,..., x_N) = \sum\limits_{z_1}\sum\limits_{z_2} ... \sum\limits_{z_M} P(x_1, ..., x_N, z_1, ..., z_N)
+\end{equation}
+
+This can be a extensive calculation, and can be reduced much in complexity by using the Forward - Backward algorithm. The algorithm works by spiting the calculation up in a forward $\alpha$-step, and a backward $\beta$-step. Looking at the alpha step:
+
+\begin{equation}
+	\alpha(z_n) = P(x_1, ..., x_n, z_n) = \sum\limits_{z_{n-1}} \alpha(z_{n-1}) P(x_n|z_n)
+	\label{eq:alpha}
+\end{equation}
+
+Using the relations in equation \ref{eq:alpha}, we can find the probability of $P(x_1, x_2,..., x_N)$ by: 
+
+\begin{equation}
+	P(x_1, x_2,..., x_N) = \alpha(z_N)
+\end{equation}
+
+In much the same way can the $\beta$-step we given by: 
+
+\begin{equation}
+	\beta(z_n) = P(x_{n+1}, ..., x_N, z_n) = \sum\limits_{z_{n+1}} \beta(z_{n+1}) P(x_{n+1}|z_{n+1}) P(z_{n+1}| z_n)
+\end{equation}
+
+This can be used to find the probability of a hidden state given a output sequence. 
+
+\begin{equation}
+	P(z_n|x_1, ..., x_N) = \alpha(z_n) \beta(z_n)
+\end{equation}
+
+\subsubsection{Hidden Markov Model In Speaker Recognition}
+In the speaker recognition case we did not uses the Markov model since there is no sequential dependency in the data, in the same way as for the word example. 
+
+Some different approaches was tried to fit a hidden Markov model to the data anyway, but no usable output was produced. This is due to the fact that there is no natural clusters in the data, as discussed in chapter \ref{sec:UGMM}. This means that the created hidden states is very random, and the jumps between them is therefore irrelevant. 
