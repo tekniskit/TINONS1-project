@@ -35,14 +35,14 @@ noClasses = length(files);
 
 % Training
 features = extractFeatures(training, Fs);
-[features, v] = pca_reduction(features,40);
+[features, v] = pca_reduction(features, 40);
 
 
 while(true)
-    %mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
+%     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
     weights = oneofkCodingTraining(features, noClasses);
-    %net1 = ProbabilisticModelTraining(features,noClasses);
-    %net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
+%     net1 = ProbabilisticModelTraining(features,noClasses);
+%     net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
     mysvm = SVMTraining(features,noClasses);
     
     % Validation
@@ -55,7 +55,7 @@ while(true)
     estimate3 = GMMValidation(testFeatures, mixes);
     estimate4 = NNValidation(testFeatures,net2)';
     estimate5 = SVMValidation(mysvm,testFeatures,noClasses);
-    %estimate5 = ones(1,length(estimate4));
+
 
     [val, id(1,:)] = max(estimate1);
     [val, id(2,:)] = max(estimate2);
@@ -83,12 +83,10 @@ while(true)
         
         figure, 
         subplot(1,3,1)
-        val = est{i};
-        plot(val(:,1:927/3)')
-        subplot(1,3,2)
-        plot(val(:,927/3+1:2*927/3)')
-        subplot(1,3,3)
-        plot(val(:,2*927/3+1:end)')
+        plot(est{i}(1:927/3)')
+        
+        
+        
     end
     error
     return;
