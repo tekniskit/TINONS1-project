@@ -1,5 +1,5 @@
 \subsection{Linear Classifier}
-The goal of linear classification is to take an input vector with multiple x values and assign it to one of multiple classes K. This can be done with one or more linear decision boundaries. The first way to classify is called the one-vs-one linear classifier. This works for 2 classes as seen in figure \ref{onevsone1}. If multiple clusters of x belonging to more than 2 classes are present we get ambiguous regions as one class might appear to be two different classes. An example of this can be seen in figure \ref{onevsone2}.
+The goal of linear classification is to take an input vector with multiple x values and assign it to one of multiple classes K. This can be done with one or more linear decision boundaries. The first way to classify is called the one-vs-one linear classifier. This works for 2 classes as seen in figure \ref{onevsone1}. If multiple clusters of x belonging to more than 2 classes are present we get ambiguous regions as one class might appear to be two different classes. An example of this can be seen in figure \ref{onevsone2} with the purple region being ambiguous.
 \begin{figure}[H]
 \centering
 \begin{minipage}[b]{0.5\textwidth}
@@ -46,11 +46,11 @@ w^* = (Z^T Z)^{-1} Z^T t
 \end{equation}
 This results in the estimated weights for the classifier. To classify the data we use the cost function described earlier in equation \ref{oneofkcostfunc}.
 
-In order to observe the boundaries in the project, the data must be 2 or 3 dimensional. This will require either the use of the PCA or fisher reduction methods explained in early sections. This leads to the image seen in figure \ref{2dimoneofk}.
+In order to observe the boundaries in the project, the data must be 2 or 3 dimensional. This will require either the use of the PCA or fisher reduction methods explained in early sections. This leads to the image seen in figure \ref{2dimoneofk} where no clear boundaries can be created.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{billeder/2dimoneofk}
-\caption{2 dimensional 1-of-k linear classifier for 3 classes of speech}
+\caption{2 dimensional features for 3 classes of speech}
 \label{2dimoneofk}
 \end{figure}
 This does not provide a usable visual representation of the classifier. The choice was made to keep the data in the higher dimensions. The output from the cost function provides a sample and the values representing the three classes:
