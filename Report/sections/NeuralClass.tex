@@ -138,6 +138,16 @@ The partial derivative can then be found as:
 
 (TODO: Show figure of how back propagation works.)
 
-In our project we have used neural networks as a classifier, which gave a this confusion matrix:
-(TODO: Insert confusion matrix.)
+In the speech recognition case, a artificial neural network have been trained to separate the data in the three classes. Before the neural network can be trained, must the number of hidden for a optimal fit be found. This is done by an exhaustive search. 
+
+\fxnote{ search image } 
+
+It is found that 50 hidden state is the optimal number of hidden numbers. After training this network for a series of times to find the global minimum, separation is possible whit a 12.4\%. This can be seen in the confusion matrix: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{billeder/conmatnn}
+\caption{Confusion matrix for the artificial neural network }
+\label{fig:conmatnn}
+\end{figure}
 %------------------------------------------------
