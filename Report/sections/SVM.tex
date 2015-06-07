@@ -88,6 +88,11 @@ A small C gives higher bias and low variance, which means it uses a higher amoun
 A large $\sigma^2$ gives higher bias and lower variance, which means that features $f_i$ varies more smoothly. \\
 A small $\sigma^2$ gives lower bias and higher variance, which means that features $f_i$ varies less smoothly.
 
-(TODO: How do we use it?)
+In this project the softmax SVM is used with the constraint being:
+\begin{equation}
+w^* = ARG MIN (||w||^* + C \sum \epsilon_n)
+\end{equation}
+Inputting the features from this project along with a vector \textbf{t} that describes which class the features belong to.
+
 
 %------------------------------------------------
