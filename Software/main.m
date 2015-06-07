@@ -37,11 +37,6 @@ noClasses = length(files);
 features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
 
-hist(features(1:2175/3,1:3),50);
-
-return;
-
-a = GMMS(features, 3, 1000);
 
 while(true)
 %     mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
@@ -67,7 +62,14 @@ while(true)
     [val, id(3,:)] = max(estimate3);
     [val, id(4,:)] = max(estimate4);
     [val, id(5,:)] = min(estimate5);
-
+    
+    est{1} = estimate1;
+    est{2} = estimate2;
+    est{3} = estimate3;
+    est{4} = estimate4;
+    est{5} = estimate5;
+    
+    
     difid = id - correctId;
     for i = 1:5
         error(1,i) = ((length(find(difid(i,:)~= 0)))/size(difid,2))*100;
@@ -76,8 +78,20 @@ while(true)
         error(4,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
     end
 
+    for i = 1:5
+        confmat(id(i,:)' , correctId(i,:)', 'count')
+        
+        figure, 
+        subplot(1,3,1)
+        val = est{i};
+        plot(val(:,1:927/3)')
+        subplot(1,3,2)
+        plot(val(:,927/3+1:2*927/3)')
+        subplot(1,3,3)
+        plot(val(:,2*927/3+1:end)')
+    end
     error
-    
+    return;
     if(bestErrorProbabilisticModel> error(1,2))
         bestErrorProbabilisticModel = error(1,2);
         save('ProbabilisticModel.mat','net1','bestErrorProbabilisticModel');

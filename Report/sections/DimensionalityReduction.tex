@@ -1,17 +1,16 @@
 %!TEX root = ..\Master.tex
 
 \section{Dimensionality Reduction}
-
-e.g. finding projection vectors, choosing number of components, applications.\\
-
-motivation:
-data compression
-speed up learning algorithm
+%e.g. finding projection vectors, choosing number of components, applications.\\
+%motivation:
+%data compression
+%speed up learning algorithm
+When working with large amounts of data in higher dimensions you often need a lot of computing power. Dimensionality reduction is mostly used in order to speed up the learning algorithm. This section contains an explanation of two widely used dimensionality reduction methods, Principal component analysis (PCA) and Fisher Discriminant method (Fisher).
 
 
 \subsection{PCA}
 
-Principal component analysis is used for reducing the number of dimensions of a feature space.
+PCA is used for reducing the number of dimensions of a feature space.
 It works by projecting the data in the feature space, down to a fewer dimensional feature space by minimizing the squared projection error.
 The reduced feature space does not nessecarily share the same features, but new features are found which best retains the variance in the data.
 
