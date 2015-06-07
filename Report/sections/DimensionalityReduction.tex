@@ -112,18 +112,24 @@ We do this to increase the speed of our learning algorithms while still retaingi
 
 \begin{figure}[H]
 \centering
-\includegraphics{billeder/pca-on-our-data}
-\caption{3D to 2D pca illustration}
+\includegraphics[scale = 0.8]{billeder/pca-on-our-data}
+\caption{3D to 2D PCA illustration}
 \label{fig:pca-on-our-data}
 \end{figure}
 
 \subsection{Fisher}
-Dimensionality Reduction is another take on linear classification. We use equation \ref{fisher1} and place a threshold on y such that class 1: $y\geqslant -\omega_0$ and class 2 is everything else. This is also said as projecting data down to one dimension.
+Fisher's linear discriminant is another look on dimensionality reduction. We use equation \ref{fisher1} and place a threshold on y such that class 1: $y\geqslant -\omega_0$ and class 2 is everything else. This is also said as projecting data down to one dimension.
 \begin{equation}
 \label{fisher1}
 y = \textbf{w}^T\textbf{x}
 \end{equation}
-This leads to a considerable loss in information and may cause overlapping in data that did not overlap in multidimensional space.\\
+This leads to a considerable loss in information and may cause overlapping in data that did not overlap in multidimensional space as can be see on figure \ref{fig:fisherfrombook} from the book Pattern Recognition and Machine Learning by Christopher M. Bishop\cite{bishop2006pattern}. The left Image is  the original space while the right image is in the projected space.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{billeder/fisherfrombook}
+\caption{Picture from the Pattern Recognition and Machine Learning Book by Cristopher M. Bishop}
+\label{fig:fisherfrombook}
+\end{figure}
 By adjusting the weight vector \textbf{w} a solution can be found that minimises overlapping by maximising the distance between classes. Given two classes we have:
 \begin{equation}
 m_1 = \frac{1}{N_1} \sum_{n=C_1} X_n,       m_2 = \frac{1}{N_2} \sum_{n=C_2} X_n
@@ -178,8 +184,8 @@ where $\boldsymbol{\mu}_k = \frac{1}{N_k}\sum_{n=C_k}\textbf{y}_n$
 and $\boldsymbol{\mu} = \frac{1}{N_k}\sum^K_{k=1}N_k \boldsymbol{\mu}_k$.\\
 The cost function is then defined as:
 \begin{equation}
-J(\textbf{W}) =  Tr{\textbf{s}^-1_W\textbf{s}_B}
+J(\textbf{W}) =  Tr\{\textbf{s}^{-1}_W\textbf{s}_B\}
 \end{equation}
-The resulting dimensions is K - 1  where K is the number of classes. In this project the dimensions of the fisher linear discriminant is $3 - 1 = 2$. Analysing these features does not provide usable classification for this project.
+The means and covariances are estimated from the training set. The resulting dimensions is K - 1  where K is the number of classes. In this project the dimensions of the fisher linear discriminant is $3 - 1 = 2$. Analysing these projected features does not provide distinct classes in this project. An examples of this is found in the linear classifier section when plotting 2 dimensional features.
 
 %------------------------------------------------
