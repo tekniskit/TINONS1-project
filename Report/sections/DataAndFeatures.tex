@@ -1,5 +1,14 @@
+%!TEX root = ..\Master.tex
+
 \section{Data Gathering}
-The data used in this project was gathered by recording three different persons reading the same article from the website "www.tv2.dk". The voices was recorded using the software Audacity\footnote{http://sourceforge.net/projects/audacity/} and the Lame mp3 codex\footnote{http://lame.sourceforge.net/}. The data is then imported into matlab using the function \texttt{[data, Fs] = audioread(pathToFile)}. The data is then normalised by removing the mean of the data, and whitening the data. The files are in stereo and both channels are used by appending one channel to the other so to have one long array of data.
+The data used in this project was gathered by recording three different persons reading the same article from the website "www.tv2.dk".
+We did one 30~ second recording per person using the same microphone in the same room.
+To get a more robust classifier, we could use more than one type of microphone and more than one room to get different background noise.
+This data could also be made artificially by adding noise using a tool like MATLAB.
+
+The voices was recorded using the software Audacity\footnote{http://sourceforge.net/projects/audacity/} and the Lame mp3 codex\footnote{http://lame.sourceforge.net/}.
+The data is then imported into MATLAB using the function \texttt{[data, Fs] = audioread(pathToFile)}. The data is then normalised by removing the mean of the data, and whitening the data. The whitening is done to remove bias from us speaking at different dB.
+The recordings are in stereo and both channels are used by appending one channel to the other so to have one long array of data.
 
 \section{Feature Extraction}
 The Mel Frequency Cepstral Coefficient method is commonly used to extract features in speech and speaker recognition. The methods provides features that are useful for classifying linguistic content. The basis is that the speech from humans is uniquely filtered by the shape of the vocal tract, tongue, teeth etc\footnote{http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/ - retrieved 4 june 2015}. 
