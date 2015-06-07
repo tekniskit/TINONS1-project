@@ -124,7 +124,7 @@ The error term of the output layer is defined as:
 
 The error term of the hidden layers is defined as:
 \begin{equation}
-\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .* a^{(l)} .* (1-a^{(l)})
+\delta^{(l)} = (1-a^{(l)})\Theta^{(l)}\delta^{(l+1)}
 \end{equation}
 
 There is no error term of the input layer. 
@@ -133,10 +133,11 @@ The partial derivative can then be found as:
 
 \begin{equation}
 \frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta) = 
-\delta
+\delta^{(l)}a^{(l)}
 \end{equation}
 
 (TODO: Show figure of how back propagation works.)
 
-(TODO: How do we use it?)
+In our project we have used neural networks as a classifier, which gave a this confusion matrix:
+(TODO: Insert confusion matrix.)
 %------------------------------------------------
