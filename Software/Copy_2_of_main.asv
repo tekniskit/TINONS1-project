@@ -18,13 +18,13 @@ noClasses = length(files);
 % Training
 features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
-alpha = [1 0.1 0.05 0.01]
+alpha = [1 0.1 0.05]
 T = 70;
-error = 100*ones(T,length(alpha));
+error = 100*ones(1,T);
 for t = 1 : T
     disp('Next Iteration')
     for b = 1: length(alpha)
-        for z = 1: 3
+        for z = 1: 2
             net = NNTrain(features,noClasses, t, alpha(b));
 
             % Validation
@@ -37,12 +37,12 @@ for t = 1 : T
 
             difid = id - correctId;
             e = ((length(find(difid(1,:)~= 0)))/size(difid,2))*100;
-            if(e < error(t,b))
+            if(e < error(t))
                 error(t,b) = e;
             end
         end
     end
-    error
 end
 
+stem(error)
 

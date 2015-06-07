@@ -46,7 +46,7 @@ while(true)
     mysvm = SVMTraining(features,noClasses);
     
     % Validation
-    testFeatures = extractFeatures(test, Fs)*v;
+    testFeatures = extractFeatures(training, Fs)*v;
     classSamples = size(testFeatures,1)/noClasses;
     correctId = [ ones(5,classSamples) 2*ones(5,classSamples) 3*ones(5,classSamples)];
 

@@ -7,7 +7,7 @@ N = size(features,1);
 % using Matlab function "svmtrain"
 C = 1e4; % soft-margin parameter ("regularisation") - automatisk rescaled for imbalanced classes
 mykernel = 'rbf'; % 'linear', 'quadratic',
-my_sigma = 12; % kernel width
+my_sigma = 10; % kernel width
 opts = statset();
 for i = 1:NoClasses
     t_class = [2*ones((i-1)*Ni,1); ones(Ni,1); 2*ones(N-i*Ni,1)];
