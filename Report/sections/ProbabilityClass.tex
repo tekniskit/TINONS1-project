@@ -45,24 +45,15 @@ In the speaker recognition case a soft-max function has been used to create a di
 \label{fig:featurehist}
 \end{figure}
 
-By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, whit a 21.58 \% error rate. The results can be seen in table \ref{tab:resultTableProp}. 
+By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, whit a 21.58 \% error rate. The results can be extracted from the confusion matrix, seen in figure \ref{fig:conmatprob}. 
 
-\begin{table}[h]
+\begin{figure}[H]
 \centering
-\begin{tabular}{ll}
-\hline
-Total Error   & 21.58 \% \\ \hline
-Nicolai Error & 24.27 \% \\
-Rasmus Error  & 10.68 \% \\
-Rune Error    & 29.77 \% \\ \hline
-\end{tabular}
-\caption{Discriminative Model Results}
-\label{tab:resultTableProp}
-\end{table}
+\includegraphics[scale=0.8]{billeder/conmatprop}
+\caption{Confusion matrix for the discriminative Model }
+\label{fig:conmatprob}
+\end{figure}
 
 The results indicate that Rune is the one there is hardest to classify. Even though some samples are classified wrong, the majority of samples is correct classified. This makes this method valid for speaker recognition. \\
-\ \\
-
-\fxnote{have awesome glud billed .}
 
 %------------------------------------------------

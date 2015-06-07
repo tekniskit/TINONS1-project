@@ -155,20 +155,14 @@ What if we used the same method to train the data, but in a supervised manner. A
 \label{fig:fitGMM}
 \end{figure}
 
-As seen on figure \ref{fig:fitGMM}, three Gaussian distributions in each GMM is the one that gives the lowest error. To ensure that 18\% is the best we can achieve whit this model, the model is retrained whit random initializations. The best fit found whit this configuration can be seen in table \ref{tab:resultTableSGMM}.
+As seen on figure \ref{fig:fitGMM}, three Gaussian distributions in each GMM is the one that gives the lowest error. To ensure that 18\% is the best we can achieve whit this model, the model is retrained whit random initializations. The best fit found to be 15.64 \% error. This can be calculated from the confusion matrix seen in figure \ref{fig:conmatGMM}. 
 
-\begin{table}[H]
+\begin{figure}[H]
 \centering
-\begin{tabular}{ll}
-\hline
-Total Error   & 15.64 \% \\ \hline
-Nicolai Error & 9.06 \% \\
-Rasmus Error  & 21.68 \% \\
-Rune Error    & 16.18 \% \\ \hline
-\end{tabular}
-\caption{Supervised GMM Results}
-\label{tab:resultTableSGMM}
-\end{table}
+\includegraphics[scale=0.7]{billeder/conmatgmm}
+\caption{Confusion matrix for supervised Gaussian mixture model }
+\label{fig:fitGMM}
+\end{figure}
 
 Here it is seen how this model is relative good at separating the data in the  the three classes. This model have the most trouble finding Rasmus, this is noticeable different from the other models where Rune is the hardest to recognize. 
 
