@@ -37,6 +37,10 @@ noClasses = length(files);
 features = extractFeatures(training, Fs);
 [features, v] = pca_reduction(features, 40);
 
+hist(features(1:2175/3,1:3),50);
+
+return;
+
 a = GMMS(features, 3, 1000);
 
 while(true)

@@ -62,21 +62,21 @@ The result of this proses will differ depending on the initial mean guesses. Thi
 As discussed in section \ref{sec:GMM} it is important to have a method of finding the best Gaussian distributions in the data set to create a good mixture model. The best Gaussian Mixture Models that fits the data can be described as optimising equation \ref{eq:maxgmm}.
 
 \begin{equation}
- L(x) = \sum\limits_{n=1}^N{\log{\sum\limits_{k}^K P(k) P(x_n|k) }}
+ L(x) = \sum\limits_{n=1}^N{\log{\sum\limits_{k}^K P(k) P(\textbf{x}_n|k) }}
 \label{eq:maxgmm}
 \end{equation}
 
 To find the maximum of equation \ref{eq:maxgmm}, we find the differentiated and set et equal zero. 
 
  \begin{equation}
- \frac{\partial L(x)}{\partial{\mu_k}} = 0
+ \frac{\partial L(\textbf{x})}{\partial{\mathbold{\mu}_k}} = 0
 \label{eq:partialzero}
 \end{equation}
 
 From equation \ref{eq:mixturemodel} and \ref{eq:partialzero} the following optimisations equations can be found: 
 
 \begin{equation}
- N_k = \sum\limits_{k}^K P(k|x_n)
+ N_k = \sum\limits_{k}^K P(k|\textbf{x}_n)
  \label{eq:em1}
 \end{equation}
 \begin{equation}
@@ -84,11 +84,11 @@ From equation \ref{eq:mixturemodel} and \ref{eq:partialzero} the following optim
  \label{eq:em2}
 \end{equation}
 \begin{equation}
- \Sigma_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|x_n) (x_n -\mu_n)(x_n-\mu_k)^\intercal}
+ \mathbold{\Sigma}_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|\textbf{x}_n) (\textbf{x}_n -\mathbold{\mu}_n)(\textbf{x}_n-\mathbold{\mu}_k)^\intercal}
  \label{eq:em3}
 \end{equation}
 \begin{equation}
- \mu_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|x_n) x_n}
+ \mathbold{\mu}_k= \frac{1}{N_k} \sum\limits_{n}^N{ P(k|\mathbold{x}_n) \mathbold{x}_n}
  \label{eq:em4}
 \end{equation}
 
