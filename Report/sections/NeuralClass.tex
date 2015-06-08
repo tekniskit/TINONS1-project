@@ -1,8 +1,6 @@
 %!TEX root = ..\Master.tex
 
 \subsection{Artificial Neural Network}
-\subsubsection{Introduction}
-
 Artificial neural networks are an attempt at creating a modelling how a brain works.
 A network consists of neurons connected together. 
 A neuron takes zero or more inputes, does some computation and gives one input as seen on figure \ref{fig:neuron}.
@@ -38,7 +36,7 @@ This gives more flexibility and expressive power in the model.
 
 \subsubsection{Mathematical representation}
 
-$a_i^{(j)}$ is the activation of unit $i$ in layer $j$, which uses the Sigmoid activation function: \fxnote{(TODO: show a plot. What does activation mean?)}
+$a_i^{(j)}$ is the activation of unit $i$ in layer $j$, which uses the Sigmoid activation function: 
 \begin{equation}
 a(x) = \dfrac{1}{1+e^{-{\Theta}^Tx}}
 \end{equation}
@@ -47,7 +45,6 @@ If the network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer $j+1$, 
 Each layer also contains a bias unit $a_0^{(j)}$.
 The representation is illustrated on figure \ref{fig:neural-network-detailed}.
 
-\fxnote{(TODO: Show how $\Theta^{(j)}$ is indexed on the figure.)}
 
 \begin{figure}[H]
 \centering
@@ -109,13 +106,9 @@ log(1-(h_\Theta(x^{(i)}))_k)
 \end{split}
 \end{equation}
 
-Where $L$ is the total number of layers, $s_l$ is the number of units in layer $l$, $K$ is the number of output units and $m$ is the number of training examples.
-
-The second term of the cost function is the regularization term.
-
-\fxnote{(TODO: Explain the intuition behind the cost function.)}
-
-To find the partial derivatives, we can use the backpropagation algorithm: \fxnote{(TODO: Help please)}\\
+Where $L$ is the total number of layers, $s_l$ is the number of units in layer $l$, $K$ is the number of output units and $m$ is the number of training examples. The second term of the cost function is the regularization term. The regularization term is a extra condition added that guards the model against over fitting. It is a sum of the squares of all the weights in the network. This is scaled by a factor $\lambda/2m$, where $\lambda>0$ is known as the regularization parameter, and $m$ is, as usual, the size of our training set. When $\lambda$ is small we prefer to minimize the original cost function, but when $\lambda$ is large we prefer small weights.
+\\\ \\
+To find the partial derivatives, we can use the backpropagation algorithm:
 
 The error term of the output layer is defined as:
 \begin{equation}
@@ -127,18 +120,14 @@ The error term of the hidden layers is defined as:
 \delta^{(l)} = (1-a^{(l)})\Theta^{(l)}\delta^{(l+1)}
 \end{equation}
 
-There is no error term of the input layer. 
-
-The partial derivative can then be found as:
+There is no error term of the input layer. The partial derivative can then be found as:
 
 \begin{equation}
 \frac{\delta}{\delta\Theta^{(l)}_{ij}}J(\Theta) = 
 \delta^{(l)}a^{(l)}
 \end{equation}
 
-\fxnote{Show figure of how back propagation works.}
-
-In the speech recognition case, a artificial neural network have been trained to separate the data in the three classes. Before the neural network can be trained, must the number of hidden for a optimal fit be found. This is done by an exhaustive search. This is seen in figure \ref{fig:NNsearch}.
+In the speech recognition case, a artificial neural network have been trained to separate the data in the three classes. Before the neural network can be trained, must the number of hidden for a optimal fit be found. This is done by an exhaustive search. This is seen in figure \ref{fig:NNsearch}, where alpha is the regularization parameter.
 
 \begin{figure}[H]
 \centering
