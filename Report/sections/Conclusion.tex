@@ -1,11 +1,14 @@
 \section{Discussion}
+When looking at the results from table \ref{tab:restest}, it is easy to see that the linear methods: Linear classifier and support vector machines, is worse than the probabilistic methods. This is often the case if the classes is not clusterable, which make it hard to draw a good decision bound. The probabilistic methods is quite good in comparison, and the best match is archived by using the artificial neural network method, which only have a 12.41\% error. \\\ \\
 
-\subsection{Subsection One}
+Looking at how well the methods was able to classify the training data, as shown in figure \ref{tab:restrain}. It is seen that the support vector machine and the artificial neural network is capable of classifying the data perfectly whit no error. This is often a indication of over fitting, and you must therefore be very cautious whit the results. By making a extensive search in the solution set of these two methods, we found that this was also the best classifier of the test data, which tells us that over fitting was not the case. Instead this is a result of a very small test set, that makes it possible to completely satisfy the training scenario. This makes the classifiers very specialized. \\\ \\
 
-\lipsum[7] % Dummy text
 
-\subsection{Subsection Two}
+When looking how the different classifiers perform on the different classes, it is shown that Rune is the one that is generally hardest to recognize. Only in the supervised Gaussian mixture model is this different where Rasmus is the hardest.  It is also seen that for the linear and Discriminative classifier, Rasmus is the easiest to find, but for the other models it is Nicolai. \\\ \\
 
-\lipsum[8] % Dummy text
+All the presented methods in table \ref{tab:restest} is able to do classification of a speaker, since there are way more correct guesses than wrong. This can also be seen in figure \ref{fig:talktest}. It is also easy to see from this figure that support vector machines only struggle to classify Rune, but have no problem whit Nicolai and Rasmus. Figure \ref{tab:restest} also shows that the errors for the neural network is not happening in bursts, and is therefore filtered out \\\ \\
+
+Looking at the PCA reduction in figure \ref{fig:DimError} it is seen how the error rate seems to stabilize at 30 features, regardless of algorithm used.
+
 
 \section{Conclusion}

@@ -33,6 +33,15 @@ Total Error	  &	16.14\%  & 13.47\%  & 0.87\%  & 0\%  & 0\% \\ \hline
 \label{tab:restrain}
 \end{table}
 
+But the tables does not supply any information about the distribution of the errors. In order to validate that the method can be used for classification, is a experiment done where the algorithms have to separate a sound file in who's talking when. The sound file is first Nicolai talking then Rasmus and in the end Rune. Each person talks in the same amount of time, and no one is talking on the same time.  After classifying all samples, is a 20 tab median filter used to determine who is talking. The results can be seen in figure \ref{fig:talktest}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{billeder/TestedMethods}
+\caption{ Find who is talking }
+\label{fig:talktest}
+\end{figure}
+
 All mesurements in tabel \ref{tab:restest} and \ref{tab:restrain} have been done whit a PCA reduction to 40 features. To investigates the PCA reduction effect on the different methods a series of measurements was done. In this series there was started by reducing to one feature and increasing the number of features until 60 was reached. The result of this test can be seen in figure \ref{fig:DimError}.
 
 \begin{figure}[H]
