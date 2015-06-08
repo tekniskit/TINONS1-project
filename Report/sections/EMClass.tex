@@ -47,7 +47,7 @@ On figure \ref{fig:kmeans} is illustrated how the k-means in 6 iterations split 
 \label{fig:kmeans}
 \end{figure}
 
-The result of this proses will differ depending on the initial mean guesses. This is especially the case is there is no natural groupings in the dataset. In this case the algorithm will still split up the data in k clusters there are side by side. This is illustrated on figure \ref{fig:badkmeans}, where the k-means algorithm tries to cluster points distributed uniformly on a circle, in 7 clusters. 
+The result of this process will differ depending on the initial mean guesses. This is especially the case is there is no natural groupings in the dataset. In this case the algorithm will still split up the data in k clusters there are side by side. This is illustrated on figure \ref{fig:badkmeans}, where the k-means algorithm tries to cluster points, distributed uniformly on a circle, in 7 clusters. 
 
 \begin{figure}[H]
 \centering
@@ -146,7 +146,7 @@ This means that this method is not able to automatically split the data up in th
 \subsubsection{Supervised Gaussian mixture model}
 \label{sec:EMGMM}
 
-What if we used the same method to train the data, but in a supervised manner. A other method is to train a Gaussian mixture model for each class, and use this to classify. A Gaussian mixture model was trained to each voices. To find the optimal amount of Gaussian distributions was a experiment where we started at one and ended whit 10.
+What if we used the same method to train the data, but in a supervised manner. A other method is to train a Gaussian mixture model for each class, and use this to classify. A Gaussian mixture model was trained to each voices. To find the optimal amount of Gaussian distributions for each model, a experiment was done where we started at one Gaussian distribution per model and ended whit 10.
 
 \begin{figure}[H]
 \centering
