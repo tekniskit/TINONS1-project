@@ -107,7 +107,7 @@ We do this to increase the speed of our learning algorithms while still retaingi
 \end{figure}
 
 \subsection{Fisher}
-Fisher's linear discriminant is another look on dimensionality reduction. We use equation \ref{fisher1} and place a threshold on y such that class 1: $y\geqslant -\omega_0$ and class 2 is everything else. This is also said as projecting data down to one dimension.
+Fisher's linear discriminant is another look on dimensionality reduction. Instead of maximizing the variance of the data, we use the information we have on the classes to separate them as much as possible. We use equation \ref{fisher1} and place a threshold on y such that class 1: $y\geqslant -\omega_0$ and class 2 is everything else. This is also said as projecting data down to one dimension.
 \begin{equation}
 \label{fisher1}
 y = \textbf{w}^T\textbf{x}
@@ -140,7 +140,7 @@ This can also be written as:
 \begin{equation}
 J(\textbf{w})=\frac{\textbf{w}^T\textbf{S}_B\textbf{w}}{\textbf{w}^T\textbf{S}_W\textbf{w}}
 \end{equation}
-Where $\textbf{S}_B = (\textbf{m}_2 - \textbf{m}_1)(\textbf{m}_2 - \textbf{m}_1)^T$ is the between-class covariance matrix and $\textbf{S}_W = \sum_{n\in C_1}(\textbf{x}_n - \textbf{m}_1)(\textbf{x}_n - \textbf{m}_1)^T + \sum_{n\in C_2}(\textbf{x}_n - \textbf{m}_2)(\textbf{x}_n - \textbf{m}_2)^T $ is the within-class covariance matrix.\\
+Where $\textbf{S}_B = (\textbf{m}_2 - \textbf{m}_1)(\textbf{m}_2 - \textbf{m}_1)^T$ is the between-class covariance matrix and $\textbf{S}_W = \sum_{n\in C_1}(\textbf{x}_n - \textbf{m}_1)(\textbf{x}_n - \textbf{m}_1)^T + \sum_{n\in C_2}(\textbf{x}_n - \textbf{m}_2)(\textbf{x}_n - \textbf{m}_2)^T $ is the within-class covariance matrix.
 Differentiating and removing the scaling factors we get:
 \begin{equation}
 \textbf{w} \propto \textbf{S}^-1_W ( \textbf{m}_2 - \textbf{m}_1 )

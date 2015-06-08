@@ -1,6 +1,6 @@
 \subsection{Probabilistic models}
-In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point belongs to a certain class. This can be very powerful since we not blindly put a sample in a class but also get information about the likelihood. This of course demands that a qualified guess of the distribution can be made. 
-By using the probability for a given sample, given a certain class $P(x|C)$. Iteration over the the different classes, it is possible to decide were to classify the sample, and how certain we are of this decision. This is illustrated in figure \ref{fig:disex} 
+In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point belongs to a certain class. This can be very powerful since we do not put a sample in a class blindly, but also get information about the likelihood. This of course demands a qualified guess on the distribution. 
+By using the probability for a given sample, given a certain class $P(x|k)$. Iteration over the the different classes, it is possible to decide were to classify the sample, and how certain we are of this decision. This is illustrated in figure \ref{fig:disex} 
 
 \begin{figure}[H]
 \centering
@@ -11,11 +11,11 @@ By using the probability for a given sample, given a certain class $P(x|C)$. Ite
 
 \subsubsection{Discriminative Model}
 
-Instead of asking what the probability of the sample, given the class is $P(x|C)$, the conditional probability can be used. That is the probability of a class, given a sample $P(C|x)$. This can be found using Bayes rule:
+Instead of asking what the probability of the sample, given the class is $P(x|k)$, the conditional probability can be used. That is the probability of a class, given a sample $P(k|x)$. This can be found using Bayes rule:
 \begin{equation}
- P(C|x)=\frac{P(x|C)P(C)}{P(x)}
+ P(k|x)=\frac{P(x|k)P(k)}{P(x)}
 \end{equation}
-This kind of model is called a discriminative model, and is used for modelling the dependence of an unobserved class $C$ on an observed variable $x$. This will for the Gaussian distribution be a sigmoid function. Using this model to classify it is no longer able to tell about the probability of a sample not being in any class, but on the same time also simplifies the classifier a lot. Compared to the linear classifier the discriminative classifier are able to create a mouth sharper decision bound. If the sharper decision bound is the goal then a easer approach is to estimate the optimal sigmoid for separation of classes directly. This can be done by optimizing a soft-max function to separate the classes. The soft-max function is expressed as: 
+This kind of model is called a discriminative model, and is used for modelling the dependence of an unobserved class $k$ on an observed variable $x$. This will for the Gaussian distribution be a sigmoid function. Using this model to classify it is no longer able to tell about the probability of a sample not being in any class, but on the same time also simplifies the classifier a lot. Compared to the linear classifier the discriminative classifier are able to create a much sharper decision bound. If the sharper decision bound is the goal then a easier approach is to estimate the optimal sigmoid for separation of classes directly. This can be done by optimizing a soft-max function to separate the classes. The soft-max function is expressed as: 
 \begin{equation}
 \label{eq:softmax}
  y_k(\textbf{w}_k,\textbf{x})=\frac{e^{\textbf{w}_k \textbf{x}}}{\sum\limits_{k=1}^K e^{\textbf{w}_k \textbf{x}}}
@@ -25,7 +25,7 @@ Comparing this to the previous probabilist function we can assume that:
 \label{eq:baseassmution}
  P(t|\textbf{w},\textbf{x}_n) = p_n^t (1-p_n)^{1-t} , t \in [0,1] 
 \end{equation}
-Here we see how likely it is that the class vector t, is correct given data point x, and some weights w in the soft-max.  Where t is the class vector, that indicates which class the data point x is part of.  The $p_n$ is given by: 
+Here we see how likely it is that the class vector t, is correct given data point x, and some weights w in the soft-max.  Where t is the class vector, that indicates which class the data point x is part of, like for the linear classifier.  The $p_n$ is given by: 
 \begin{equation}
  p_n = P(C| \textbf{w}, \textbf{x}_n) = y(\textbf{w},\textbf{x}_n)
 \end{equation}

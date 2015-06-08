@@ -37,15 +37,14 @@ If we look at a case with more than two classes, the linear classifier is prone 
 \begin{equation}
 y_k(\textbf{x})=\textbf{w}_k^T\textbf{x}+\omega_{k0}
 \end{equation}
-and choosing the value of x to be a part of class k if $y_k(\textbf{x})>y_{m}(\textbf{x})$ for all $m \neq k$. This leads to decision boundaries corresponding to the 1-of-k classifier where the decision boundaries join together in the middle corresponding to the image in figure \ref{oneofk1}.
+and choosing the value of x to be a part of class k if $y_k(\textbf{x})>y_{m}(\textbf{x})$ for all $m \neq k$. This leads to decision boundaries corresponding to the 1-of-k classifier where the decision boundaries join together in the middle corresponding to the image in figure \ref{oneofk1}.\\\ \\
 
-\textbf{Training:}\\
-Training the one-of-k function requires the use of two vectors in matlab: $t \& Z$. t is vector of the correct classes while Z is a vector containing our features. In order to train the one-of-k classifier we use the following equation:
+
+Training the one-of-k function requires the use of two vectors in matlab: $t$ and $Z$. t is vector of the correct classes while Z is a vector containing our features. In order to train the one-of-k classifier we use the following equation:
 \begin{equation}
 w^* = (Z^T Z)^{-1} Z^T t
 \end{equation}
 This results in the estimated weights for the classifier. To classify the data we use the cost function described earlier in equation \ref{oneofkcostfunc}.
-
 In order to observe the boundaries in the project, the data must be 2 or 3 dimensional. This will require either the use of the PCA or fisher reduction methods explained in early sections. This leads to the image seen in figure \ref{2dimoneofk}.
 \begin{figure}[H]
 \centering
@@ -53,31 +52,31 @@ In order to observe the boundaries in the project, the data must be 2 or 3 dimen
 \caption{2 dimensional 1-of-k linear classifier for 3 classes of speech}
 \label{2dimoneofk}
 \end{figure}
-This does not provide a usable visual representation of the classifier. The choice was made to keep the data in the higher dimensions. The output from the cost function provides a sample and the values representing the three classes:
+This does not provide a usable visual representation of the classifier. The choice was made to keep the data in the higher dimensions.\\\ \\
+The output from the cost function provides a sample and the values representing the three classes:
 \begin{verbatim}
 0.5333
 0.2506
 0.2160
 \end{verbatim}
-The cost function classifies the first sample to belong to class 1 as an example.
+The highest value indicates that it belongs to this class. The cost function classifies the first sample to belong to class 1 as an example. The values from the cost function cannot be seen as a metric for how well it fits the class, just that it fits more the one class then the other. \\\ \\
 
-\textbf{Intermediate results:}\\
-The test data was split into 3 sections and run through the cost function. This resulted in three plots as can be seen in figure \ref{fig:oneofkval1}, \ref{fig:oneofkval2} \& \ref{fig:oneofkval3}. The classes are coloured: Class 1 = Red, Class 2 = Blue, Class 3 = Green.
+The test data for each class was run through the cost function. This resulted in three plots as can be seen in figure \ref{fig:oneofkval1}, \ref{fig:oneofkval2} \& \ref{fig:oneofkval3}. The classes are coloured: Class 1 (Nicolai) = Red,  Class 2 (Rasmus) = Blue,  Class 3 (Rune) = Green.
 \begin{figure}[H]
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{billeder/oneofkval1}
-  \caption{Output from first 1/3 of the data}\label{fig:oneofkval1}
+  \caption{Output from Nicolai data}\label{fig:oneofkval1}
 \endminipage\hfill
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{billeder/oneofkval2}
-  \caption{Output from middle 1/3 of the data}\label{fig:oneofkval2}
+  \caption{Output from Rasmus data }\label{fig:oneofkval2}
 \endminipage\hfill
 \minipage{0.32\textwidth}%
   \includegraphics[width=\linewidth]{billeder/oneofkval3}
-  \caption{Output from last 1/3 of the data}\label{fig:oneofkval3}
+  \caption{Output from Rune data}\label{fig:oneofkval3}
 \endminipage
 \end{figure}
-When evaluating the peak values of the three plots, it can be observed that the first 1/3 of the data belongs to class 1, the middle 1/3 of the data belongs to class 2 and the rest of the data belongs to class 3. On figure \ref{fig:conmatlin} is shown the confusion matrix for the linear classifier: 
+When evaluating the peak values of the three plots, it can be observed that the classifier correctly detriment that the first data set belongs to Nicolai, the second to Rasmus and the last to Rune. This can also be shown in a confusion matrix as seen on figure \ref{fig:conmatlin}: 
 
 \begin{figure}[H]
 \centering
