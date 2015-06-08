@@ -1,11 +1,12 @@
 %!TEX root = ..\Master.tex
 
 \subsection{Support Vector Machines}
-The support vector machine is a supervised learning algorithm.
-Compared to neural network, it sometimes gives a cleaner and more powerful way of learning complex non-linear functions. \fxnote{(TODO: What does more powerful mean?)}
+The support vector machine is a supervised learning algorithm. It can also be referred to as a sparse kernel machine. 
+Compared to neural network, it sometimes gives a cleaner and more powerful way of learning complex non-linear functions. 
+The goal of SVM is to maximise the margin between two clusters.
 
 \subsubsection{Linear}
-When doing the linear classifier, SVM will try to find the line that seperates the data with the highest margin as seen on figure \ref{fig:svm-margin}.
+When doing the linear classifier, SVM will try to find the line that separates the data with the highest margin as seen on figure \ref{fig:svm-margin}.
 
 \begin{figure}[H]
 \centering
@@ -21,7 +22,7 @@ By solving the optimization problem defined as equation \ref{eq:svm-linear-optim
 + \frac{1}{2}\sum_{i=1}^{n}\theta^2_j
 \label{eq:svm-linear-optimization}
 \end{equation}
-We must choose the value of the constant $C$. \fxnote{(TODO: what is its effect? Some regularization thing.)}
+We must choose the value of the constant $C$. \fxnote{(TODO: what is its effect? Some regularization thing. I think it is: C determines the weight of the slack variables)}
 Figure \ref{fig:svm-cost-function} shows the plot of $cost_0$ and $cost_1$.
 \begin{figure}[H]
 \centering
@@ -41,9 +42,10 @@ h =
 
 
 \subsubsection{Non-linear}
-Finds the kernels that seperates the data best.
-gaussian kernels.
-
+When working with non-linear support vector machine the goal become to find the kernels that separates the data best. These kernels are transformations from one space to another. Linear kernels are define as $k(x_n,x_m)= x_n^Tx_m$ and Gaussian kernels can be defined as:
+\begin{equation}
+k(x_n,x_m) = e^{-\gamma|\bar{x}_n - \bar{x}_m|^2}
+\end{equation}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=.75]{billeder/svm-non-linear}
@@ -89,7 +91,11 @@ A small C gives higher bias and low variance, which means it uses a higher amoun
 A large $\sigma^2$ gives higher bias and lower variance, which means that features $f_i$ varies more smoothly. \\
 A small $\sigma^2$ gives lower bias and higher variance, which means that features $f_i$ varies less smoothly.
 
-The support vector machine classifier is used on the speaker recognition data. When evaluating this on the test set a 21.68\% error was found. The confusion matrix can be seen in figure \ref{fig:conmatsvm}. 
+In this project the softmax SVM is used with the constraint being:
+\begin{equation}
+w^* = ARG MIN (||w||^* + C \sum \epsilon_n)
+\end{equation}
+Inputting the features from this project along with a vector \textbf{t} that describes which class the features belong to results in the estimated weights for the SVM classifier. The support vector machine classifier is then used on the speaker recognition test data. When evaluating the test set a 21.68\% error was found. The confusion matrix can be seen in figure \ref{fig:conmatsvm}. 
 
 \begin{figure}[H]
 \centering
