@@ -38,7 +38,7 @@ This gives more flexibility and expressive power in the model.
 
 \subsubsection{Mathematical representation}
 
-$a_i^{(j)}$ is the activation of unit $i$ in layer $j$, which uses the Sigmoid activation function: (TODO: show a plot. What does activation mean?)
+$a_i^{(j)}$ is the activation of unit $i$ in layer $j$, which uses the Sigmoid activation function: \fxnote{(TODO: show a plot. What does activation mean?)}
 \begin{equation}
 a(x) = \dfrac{1}{1+e^{-{\Theta}^Tx}}
 \end{equation}
@@ -47,7 +47,7 @@ If the network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer $j+1$, 
 Each layer also contains a bias unit $a_0^{(j)}$.
 The representation is illustrated on figure \ref{fig:neural-network-detailed}.
 
-(TODO: Show how $\Theta^{(j)}$ is indexed on the figure.)
+\fxnote{(TODO: Show how $\Theta^{(j)}$ is indexed on the figure.)}
 
 \begin{figure}[H]
 \centering
@@ -113,9 +113,9 @@ Where $L$ is the total number of layers, $s_l$ is the number of units in layer $
 
 The second term of the cost function is the regularization term.
 
-(TODO: Explain the intuition behind the cost function.)
+\fxnote{(TODO: Explain the intuition behind the cost function.)}
 
-To find the partial derivatives, we can use the backpropagation algorithm: (TODO: Help please)\\
+To find the partial derivatives, we can use the backpropagation algorithm: \fxnote{(TODO: Help please)}\\
 
 The error term of the output layer is defined as:
 \begin{equation}
@@ -136,13 +136,18 @@ The partial derivative can then be found as:
 \delta^{(l)}a^{(l)}
 \end{equation}
 
-(TODO: Show figure of how back propagation works.)
+\fxnote{Show figure of how back propagation works.}
 
-In the speech recognition case, a artificial neural network have been trained to separate the data in the three classes. Before the neural network can be trained, must the number of hidden for a optimal fit be found. This is done by an exhaustive search. 
+In the speech recognition case, a artificial neural network have been trained to separate the data in the three classes. Before the neural network can be trained, must the number of hidden for a optimal fit be found. This is done by an exhaustive search. This is seen in figure \ref{fig:NNsearch}.
 
-\fxnote{ search image } 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{billeder/TraningErrorNN}
+\caption{Artificial neural network Exhaustive Search}
+\label{fig:NNsearch}
+\end{figure} 
 
-It is found that 50 hidden state is the optimal number of hidden numbers. After training this network for a series of times to find the global minimum, separation is possible whit a 12.4\%. This can be seen in the confusion matrix: 
+It is found that 55 hidden state is the optimal number of hidden numbers. After training this network for a series of times to find the global minimum, separation is possible whit a 12.4\%. This can be seen in the confusion matrix: 
 
 \begin{figure}[H]
 \centering

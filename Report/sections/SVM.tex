@@ -2,7 +2,7 @@
 
 \subsection{Support Vector Machines}
 The support vector machine is a supervised learning algorithm.
-Compared to neural network, it sometimes gives a cleaner and more powerful way of learning complex non-linear functions. (TODO: What does more powerful mean?)
+Compared to neural network, it sometimes gives a cleaner and more powerful way of learning complex non-linear functions. \fxnote{(TODO: What does more powerful mean?)}
 
 \subsubsection{Linear}
 When doing the linear classifier, SVM will try to find the line that seperates the data with the highest margin as seen on figure \ref{fig:svm-margin}.
@@ -21,7 +21,7 @@ By solving the optimization problem defined as equation \ref{eq:svm-linear-optim
 + \frac{1}{2}\sum_{i=1}^{n}\theta^2_j
 \label{eq:svm-linear-optimization}
 \end{equation}
-We must choose the value of the constant $C$. (TODO: what is its effect? Some regularization thing.)
+We must choose the value of the constant $C$. \fxnote{(TODO: what is its effect? Some regularization thing.)}
 Figure \ref{fig:svm-cost-function} shows the plot of $cost_0$ and $cost_1$.
 \begin{figure}[H]
 \centering
@@ -30,7 +30,7 @@ Figure \ref{fig:svm-cost-function} shows the plot of $cost_0$ and $cost_1$.
 \label{fig:svm-cost-function}
 \end{figure}
 
-Hypothesis: (TODO: Is this correct? shouldn't it be 1 if $\theta^Tx \geq 1$ and 0 if $\theta^Tx \leq -1$)
+Hypothesis: \fxnote{(TODO: Is this correct? shouldn't it be 1 if} $\theta^Tx \geq 1$ and 0 if $\theta^Tx \leq -1$)
 \begin{equation}
 h = 
 \begin{cases}
@@ -38,6 +38,7 @@ h =
 0 & \text{otherwise}
 \end{cases}
 \end{equation}
+
 
 \subsubsection{Non-linear}
 Finds the kernels that seperates the data best.
@@ -88,21 +89,14 @@ A small C gives higher bias and low variance, which means it uses a higher amoun
 A large $\sigma^2$ gives higher bias and lower variance, which means that features $f_i$ varies more smoothly. \\
 A small $\sigma^2$ gives lower bias and higher variance, which means that features $f_i$ varies less smoothly.
 
-
-In this project the softmax SVM is used with the constraint being:
-\begin{equation}
-w^* = ARG MIN (||w||^* + C \sum \epsilon_n)
-\end{equation}
-Inputting the features from this project along with a vector \textbf{t} that describes which class the features belong to.
-
 The support vector machine classifier is used on the speaker recognition data. When evaluating this on the test set a 21.68\% error was found. The confusion matrix can be seen in figure \ref{fig:conmatsvm}. 
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=.75]{billeder/conmatsvm}
 \caption{Confusion matrix for the support vector machine }
 \label{fig:conmatsvm}
 \end{figure}
-
 
 
 %------------------------------------------------
