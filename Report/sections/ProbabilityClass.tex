@@ -1,5 +1,5 @@
 \subsection{Probabilistic models}
-In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point belongs to a certain class. This can be very powerful since we do not put a sample in a class blindly, but also get information about the likelihood. This of course demands a qualified guess on the distribution. 
+In many cases the features follows a certain distribution. By using the information in the distribution it is possible to filter out outliers and determine how likely it is that the point belongs to a certain class. This can be very powerful since we do not put a sample in a class blindly. Information about the likelihood is also present. This of course demands a qualified guess on the distribution. 
 By using the probability for a given sample, given a certain class $P(x|k)$. Iteration over the the different classes, it is possible to decide were to classify the sample, and how certain we are of this decision. This is illustrated in figure \ref{fig:disex} 
 
 \begin{figure}[H]
@@ -45,7 +45,7 @@ In the speaker recognition case a soft-max function has been used to create a di
 \label{fig:featurehist}
 \end{figure}
 
-By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, whit a 21.58 \% error rate. The results can be extracted from the confusion matrix, seen in figure \ref{fig:conmatprob}. 
+By running the optimizing the soft-max function a model is found that are capable of separating the test set in the three classes, with a 21.58 \% error rate. The results can be extracted from the confusion matrix, seen in figure \ref{fig:conmatprob}. 
 
 \begin{figure}[H]
 \centering

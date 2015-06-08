@@ -1,6 +1,6 @@
 \section{Results}
 
-All the methods have been compared against each other. In the comparison all method have been in a "must classify" setting. This means that each sample is put in a class, even though the probabilistic method says that the odds of it belonging in any class is very little. Each sample can also only belong to one class, and we be assigned to the class whit the highest probability. For these test the data was split so 70\% was used as training and the remaining 30\% to validation. Further more was the amount of samples normalized, so each class had the same amount of training and test samples.
+All the methods have been compared against each other. In the comparison all method have been in a "must classify" setting. This means that each sample is put in a class, even though the probabilistic method says that the odds of it belonging in any class is very little. Each sample can also only belong to one class, and we be assigned to the class with the highest probability. For these test the data was split so 70\% was used as training and the remaining 30\% to validation. Further more was the amount of samples normalized, so each class had the same amount of training and test samples.
 
 
 \begin{table}[H]
@@ -17,7 +17,7 @@ Total Error	  &	22.22\%  & 21.58\%  & 15.64\%  & 12.41\%  & 21.68\% \\ \hline
 \label{tab:restest}
 \end{table}
 
-On table \ref{tab:restest} it is shown how many percent error that was in each class, and the total error of all classes, when classifying the test data, whit the different methods. Even though this is the most important metric of validation, it can be interesting to see how well it classifies to 70\% training data. This is shown in figure \ref{tab:restrain}, where the error as expected is way lower.
+On table \ref{tab:restest} it is shown how many percent error that was in each class, and the total error of all classes, when classifying the test data, with the different methods. Even though this is the most important metric of validation, it can be interesting to see how well it classifies to 70\% training data. This is shown in figure \ref{tab:restrain}, where the error as expected is way lower.
 
 \begin{table}[H]
 \centering
@@ -42,7 +42,7 @@ But the tables does not supply any information about the distribution of the err
 \label{fig:talktest}
 \end{figure}
 
-All mesurements in tabel \ref{tab:restest} and \ref{tab:restrain} have been done whit a PCA reduction to 40 features. To investigates the PCA reduction effect on the different methods a series of measurements was done. In this series there was started by reducing to one feature and increasing the number of features until 60 was reached. The result of this test can be seen in figure \ref{fig:DimError}.
+All mesurements in tabel \ref{tab:restest} and \ref{tab:restrain} have been done with a PCA reduction to 40 features. To investigates the PCA reduction effect on the different methods a series of measurements was done. In this series there was started by reducing to one feature and increasing the number of features until 60 was reached. The result of this test can be seen in figure \ref{fig:DimError}.
 
 \begin{figure}[H]
 \centering

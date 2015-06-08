@@ -35,7 +35,7 @@ One way of finding groupings of data, in the feature space, is by using the k-me
   \item Assign responsibility: For each point, find the closest mean points and make it responsible for that point.
   \label{step:iteratemeans} 
   \item Calculate new mean: Move each mean point to the mean value of the cluster of points the mean is responsible for. 
-  \item Continue whit step \ref{step:iteratemeans}, till no change in points. 
+  \item Continue with step \ref{step:iteratemeans}, till no change in points. 
 \end{enumerate}
 
 On figure \ref{fig:kmeans} is illustrated how the k-means in 6 iterations split the data up in 3 clusters.
@@ -104,7 +104,7 @@ The variable $N_k$ can be seen as the effective number of samples in a cluster, 
   
   \item M-Step: Maximize the Gaussian mixture model parameters by using equations \ref{eq:em1}, \ref{eq:em2}, \ref{eq:em3} and \ref{eq:em4}. 
   
-  \item Continue whit step 2, till no change in Gaussian mixture model parameters. 
+  \item Continue with step 2, till no change in Gaussian mixture model parameters. 
 \end{enumerate}
 
 Like the k-means algorithm does this algorithm also map a predetermined number of Gaussian distributions to the dataset. The optimal amount must be found though exploration. On figure \ref{fig:UGMM} we see how the EM algorithm has been used to map 3 Gaussian mixture model to a dataset. 
@@ -121,7 +121,7 @@ Like for the k-means the initial start estimates for the mean value is important
 \subsubsection{Unsupervised Gaussian Mixture Model}
 \label{sec:UGMM}
 Sometimes the training data is unlabelled, which mean that the classes is unknown. In such data there can still be some underlying structures, that can be used to classify the data. The goal of unsupervised learning is to discover these structures, and create the classes from them. \\ \ \\
-One approach of this is to select a number of desired classes, and try finding clusters in the data to fit to the classes. This can be done whit the k-means as shown in figure \ref{fig:kmeans}.  where 3 classes is found to fit the data. Likewise can the Gaussian mixture model also be used to find distributions that describes the classes. This can be seen in figure \ref{fig:UGMM} where 3 Gaussian distributions is fit to the unlabelled data. \\ \ \\
+One approach of this is to select a number of desired classes, and try finding clusters in the data to fit to the classes. This can be done with the k-means as shown in figure \ref{fig:kmeans}.  where 3 classes is found to fit the data. Likewise can the Gaussian mixture model also be used to find distributions that describes the classes. This can be seen in figure \ref{fig:UGMM} where 3 Gaussian distributions is fit to the unlabelled data. \\ \ \\
 
 In the speech recognition case we have investigated if it is possible to use the Gaussian mixture model as a unsupervised method to find the 3 persons: Nicolai, Rasmus and Rune. For this to work the features must be placed in separated clusters corresponding to the persons. 
 
@@ -146,7 +146,7 @@ This means that this method is not able to automatically split the data up in th
 \subsubsection{Supervised Gaussian mixture model}
 \label{sec:EMGMM}
 
-What if we used the same method to train the data, but in a supervised manner. A other method is to train a Gaussian mixture model for each class, and use this to classify. A Gaussian mixture model was trained to each voices. To find the optimal amount of Gaussian distributions for each model, a experiment was done where we started at one Gaussian distribution per model and ended whit 10.
+What if we used the same method to train the data, but in a supervised manner. A other method is to train a Gaussian mixture model for each class, and use this to classify. A Gaussian mixture model was trained to each voices. To find the optimal amount of Gaussian distributions for each model, a experiment was done where we started at one Gaussian distribution per model and ended with 10.
 
 \begin{figure}[H]
 \centering
@@ -155,7 +155,7 @@ What if we used the same method to train the data, but in a supervised manner. A
 \label{fig:fitGMM}
 \end{figure}
 
-As seen on figure \ref{fig:fitGMM}, three Gaussian distributions in each GMM is the one that gives the lowest error. To ensure that 18\% is the best we can achieve whit this model, the model is retrained whit random initializations. The best fit found to be 15.64 \% error. This can be calculated from the confusion matrix seen in figure \ref{fig:conmatGMM}. 
+As seen on figure \ref{fig:fitGMM}, three Gaussian distributions in each GMM is the one that gives the lowest error. To ensure that 18\% is the best we can achieve with this model, the model is retrained with random initializations. The best fit found to be 15.64 \% error. This can be calculated from the confusion matrix seen in figure \ref{fig:conmatGMM}. 
 
 \begin{figure}[H]
 \centering
