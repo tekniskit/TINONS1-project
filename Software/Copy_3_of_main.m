@@ -84,31 +84,37 @@ while(true)
     plot(medfilt1(id(1,:),20))
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Linear')
+    axis([1 927 0 4])
     
     subplot(3,2,1)
     plot(correctId(1,:),'r')
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Exspected Correct Result')
+    axis([1 927 0 4])
     
     subplot(3,2,3)
     plot(medfilt1(id(2,:),20))
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Discriminative')
+    axis([1 927 0 4])
     
     subplot(3,2,4)
     plot(medfilt1(id(3,:),20))
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Gaussian Mixture Model')
+    axis([1 927 0 4])
     
     subplot(3,2,5)
     plot(medfilt1(id(4,:),20))
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Artificial Neural Network')
+    axis([1 927 0 4])
     
     subplot(3,2,6)
     plot(medfilt1(id(5,:),20))
     set(gca, 'YTick',1:3, 'YTickLabel',{'Nicolai' 'Rasmus' 'Rune'})
     title('Support Vector Machines')
+    axis([1 927 0 4])
     return 
 end
 

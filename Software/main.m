@@ -35,15 +35,15 @@ noClasses = length(files);
 
 % Training
 features = extractFeatures(training, Fs);
-[features, v] = pca_reduction(features,40);
+[features, v] = pca_reduction(features,3);
 
 
 while(true)
-    %mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
+    mixes = GMMTraning(features, randi([1 5],1,1), noClasses);
     weights = oneofkCodingTraining(features, noClasses);
-    %net1 = ProbabilisticModelTraining(features,noClasses);
-    %net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
-    mysvm = SVMTraining(features,noClasses);
+    net1 = ProbabilisticModelTraining(features,noClasses);
+    net2 = NNTrain(features,noClasses, randi([1 50],1,1), 0.1);
+    %mysvm = SVMTraining(features,noClasses);
     
     % Validation
     testFeatures = extractFeatures(test, Fs)*v;
@@ -54,8 +54,8 @@ while(true)
     estimate2 = ProbabilisticModelValidation(testFeatures,net1)';
     estimate3 = GMMValidation(testFeatures, mixes);
     estimate4 = NNValidation(testFeatures,net2)';
-    estimate5 = SVMValidation(mysvm,testFeatures,noClasses);
-    %estimate5 = ones(1,length(estimate4));
+    %estimate5 = SVMValidation(mysvm,testFeatures,noClasses);
+    estimate5 = ones(1,length(estimate4));
 
     [val, id(1,:)] = max(estimate1);
     [val, id(2,:)] = max(estimate2);
@@ -78,20 +78,9 @@ while(true)
         error(4,i) = ((length(find(difid(i,2*classSamples+1:end)~= 0)))/classSamples)*100;
     end
 
-    for i = 1:5
-        confmat(id(i,:)' , correctId(i,:)', 'count')
-        
-        figure, 
-        subplot(1,3,1)
-        val = est{i};
-        plot(val(:,1:927/3)')
-        subplot(1,3,2)
-        plot(val(:,927/3+1:2*927/3)')
-        subplot(1,3,3)
-        plot(val(:,2*927/3+1:end)')
-    end
+    
     error
-    return;
+
     if(bestErrorProbabilisticModel> error(1,2))
         bestErrorProbabilisticModel = error(1,2);
         save('ProbabilisticModel.mat','net1','bestErrorProbabilisticModel');
@@ -107,7 +96,7 @@ while(true)
         save('NN.mat','net2','bestErrorNN');
     end
     
-    return 
+    
 end
 
 hist(id')

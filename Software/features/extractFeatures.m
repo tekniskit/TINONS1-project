@@ -22,7 +22,7 @@ function [features] = extractFeatures(data, Fs)
         
         features = [
             features;
-            mel %, s'
+            mel%, s'
         ];
     end
 end

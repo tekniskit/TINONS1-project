@@ -1,8 +1,8 @@
 function [ features, v ] = pca_reduction( features, noNewFeatures )
-    [s,d, v] = svd(features);
+    [s,d, v] = svd(cov(features));
     
-    %figure,
-    %plot(cumsum(d/sum(d)))
+    figure,
+    plot(cumsum(d/sum(d)))
     
     v = v(:, 1:noNewFeatures);
     
